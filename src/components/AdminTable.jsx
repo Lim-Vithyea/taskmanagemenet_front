@@ -1,5 +1,8 @@
 import React from 'react'
 import { Data } from './TestTable'
+import IconDelete from "../assets/icon-delete.svg"
+import IconEdit from "../assets/icon-edit.svg"
+import IconDetail from "../assets/icon-detail.svg"
 
 const AdminTable = () => {
   return (
@@ -21,10 +24,24 @@ const AdminTable = () => {
                     <td className='px-6 py-4'>admin</td>
                     <td className='px-6 py-4'>admin@gmail.com</td>
                     <td className='px-6 py-4'>123</td>
-                    <td className="px-6 py-4 flex space-x-3 ">
-                      <a href="#" className="text-blue-600 hover:underline">Edit</a>
-                      <a href="#" className="text-red-600 hover:underline">Remove</a>
+                    <td className="px-6 flex justify-center gap-2 pt-2">
+                           <button className=" w-10 h-10 bg-blue-600 text-white rounded-xl">
+                           <div className='flex justify-center '>
+                           <img src={IconEdit} className='w-5 h-5'/>
+                           </div>
+                           </button>
+                           <button className=" w-10 h-10 bg-red-600 text-white rounded-xl">
+                           <div className='flex justify-center'>
+                           <img src={IconDelete} className='w-5 h-5'/>
+                           </div>
+                            </button>
+                            <button className=" w-10 h-10 bg-yellow-500 text-white rounded-xl">
+                            <div className='flex justify-center'>
+                                <img src={IconDetail} className='w-5 h-5'/>
+                            </div>
+                        </button>
                     </td>
+                    
                 </tr>
                 {/* {Data.map((data, index) => (
                   <tr key={data.id} className="bg-white border-b-2 border-blue-200 hover:bg-gray-50">

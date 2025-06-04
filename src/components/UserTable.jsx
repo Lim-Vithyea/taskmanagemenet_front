@@ -11,11 +11,11 @@ const UserTable = () => {
             <table className="w-full text-sm text-left text-gray-700">
               <thead className="text-xs uppercase bg-gray-100 text-blue-500 border-b">
                 <tr>
-                  <th className="px-6 py-3">Index</th>
-                  <th className="px-6 py-3">Username</th>
-                  <th className="px-6 py-3">Email</th>
-                  <th className="px-6 py-3">password</th>
-                  <th className="px-6 py-3 text-center ">Action</th>
+                  <th className="px-6 py-2">Index</th>
+                  <th className="px-6 py-2">Username</th>
+                  <th className="px-6 py-2">Email</th>
+                  <th className="px-6 py-2">password</th>
+                  <th className="px-6 py-2 text-center ">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -26,7 +26,7 @@ const UserTable = () => {
                     <td className="px-6 py-4">Example@gmail.com</td>
                     <td className="px-6 py-4">pa$$w0rd</td>
                     <td className="px-6 py-4 ">
-                    <td className="px-6 py-4 flex justify-center gap-2">
+                    <td className="px-6 flex justify-center gap-2">
                       <button className=" w-10 h-10 bg-blue-600 text-white rounded-xl">
                         <div className='flex justify-center '>
                           <img src={IconEdit} className='w-5 h-5'/>

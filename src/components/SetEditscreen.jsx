@@ -4,9 +4,6 @@ import { useStateProps } from '../context/StateContext';
 
 const SetEditscreen = ({ closeEditFunction, userData }) => {
   const [show, setShow] = useState(false);
-  const { isCloseAdd } = useStateProps();
-
-  // Form states
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
@@ -18,11 +15,10 @@ const SetEditscreen = ({ closeEditFunction, userData }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Populate form with selected user data
   useEffect(() => {
     if (userData) {
       setTitle(userData.title || '');
-      setDescription(userData.description || '');
+      setDescription(userData.desc || '');
       setStartDate(userData.timeS || '');
       setEndDate(userData.timeE || '');
       setStatus(userData.status || '');
@@ -42,9 +38,7 @@ const SetEditscreen = ({ closeEditFunction, userData }) => {
     };
 
     console.log("Updated Data:", updatedUser);
-
-    // TODO: send updatedUser to parent or backend
-    closeEditFunction(); // close modal after save
+    closeEditFunction(); 
   };
 
   return (
@@ -107,8 +101,7 @@ const SetEditscreen = ({ closeEditFunction, userData }) => {
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
                 className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                required
-              >
+                required>
                 <option value="">Select status</option>
                 <option value="In Progress">Ongoing</option>
                 <option value="Completed">Completed</option>
@@ -121,8 +114,7 @@ const SetEditscreen = ({ closeEditFunction, userData }) => {
             <button
               type="button"
               onClick={closeEditFunction}
-              className="px-6 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg shadow-md transition"
-            >
+              className="px-6 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg shadow-md transition">
               Cancel
             </button>
             <Button name="Save" color="bg-blue-500 hover:bg-blue-600" type="submit" />
