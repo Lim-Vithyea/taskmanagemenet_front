@@ -13,8 +13,8 @@ const AssignTask = () => {
 
   return (
     <div className={`transition-all duration-500 ease-out ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} flex justify-center items-center fixed inset-0 bg-black/30 backdrop-blur-sm z-50`}>
-      <div className='w-[800px] h-auto bg-white rounded-2xl shadow-2xl px-10 py-8'>
-        <h1 className='text-center font-bold text-2xl text-blue-600 mb-6'>Assign Task for Employee</h1>
+      <div className='w-[700px] h-auto bg-white rounded-2xl shadow-2xl px-10 py-8'>
+        <h1 className='text-center font-bold text-2xl text-blue-600 mb-6'>⚒️Assign Task for Employee</h1>
 
         <form>
           <div className='flex gap-10 justify-center pt-2'>

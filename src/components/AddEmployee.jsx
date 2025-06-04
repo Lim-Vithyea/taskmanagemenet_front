@@ -153,7 +153,7 @@ const AddEmployee = () => {
         show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       } flex justify-center items-center fixed inset-0 bg-black/50 backdrop-blur-sm z-40`}
     >
-      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-lg p-8 mx-4">
+      <div className="w-[600px] max-w-3xl bg-white rounded-2xl shadow-lg p-8 mx-4">
         <h1 className="text-2xl font-bold text-center text-blue-600 mb-6">
           Add New Employee
         </h1>
