@@ -168,7 +168,7 @@ const AddEmployee = () => {
                 value={employeeData.fullname}
                 onChange={handleChange}
                 className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
-                placeholder="John Doe"
+                placeholder="Enter your username"
                 required
               />
             </div>
@@ -181,7 +181,7 @@ const AddEmployee = () => {
                 value={employeeData.username}
                 onChange={handleChange}
                 className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
-                placeholder="johndoe123"
+                placeholder="Vithyea..."
                 required
               />
             </div>
@@ -194,7 +194,7 @@ const AddEmployee = () => {
                 value={employeeData.email}
                 onChange={handleChange}
                 className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
-                placeholder="john@example.com"
+                placeholder="vithyea@example.com"
                 required
               />
             </div>

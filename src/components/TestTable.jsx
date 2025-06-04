@@ -7,6 +7,7 @@ import IconDetail from "../assets/icon-detail.svg"
 import IconDone from "../assets/icon-done.svg"
 import IconGoing from "../assets/icon-ongoing.svg"
 import Viewtask from './Viewtask';
+import DeleteScreen from './DeleteScreen';
 
 
 export const Data = [
@@ -39,6 +40,7 @@ const TestTable = () => {
   const [selectUser,setSelecteduser] = useState(null);
   const [isEdit,setEdit] = useState(false);
   const [isView,setView] = useState(false);
+  const [isDelete,setDelete] = useState(false);
 
   const closeEdit = () => {
     setEdit(false);
@@ -51,6 +53,12 @@ const TestTable = () => {
   const viewTask = (datauser) => {
     setSelecteduser(datauser);
     setView(true);
+  }
+  const deleteTask = () => {
+    setDelete(true);
+  }
+  const closeDelete = () => {
+    setDelete(false);
   }
   return (
     <div className="p-4">
@@ -101,7 +109,8 @@ const TestTable = () => {
                       <img src={IconEdit} className='w-5 -5'/>
                     </div>
                     </button>
-                  <button className=" w-10 h-10 bg-red-600 text-white rounded-[6px]">
+                  <button className=" w-10 h-10 bg-red-600 text-white rounded-[6px]"
+                  onClick={()=>deleteTask()}>
                     <div className='flex justify-center'>
                       <img src={IconDelete} className='w-5 -5'/>
                     </div>
@@ -120,6 +129,7 @@ const TestTable = () => {
       {/* Edit screen */}
       {isEdit && <SetEditscreen closeEditFunction={closeEdit} userData={selectUser}/>}
       {isView && <Viewtask closeView={closeView} dataView={selectUser} />}
+      {isDelete && <DeleteScreen closeDelete={closeDelete}/>}
       </div>
     </div>
   );
