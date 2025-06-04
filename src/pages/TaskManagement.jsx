@@ -20,7 +20,7 @@ const TaskManagement = () => {
           <AssignButton setisAddStuff={openAdd} name={"Assign task"} />
         </div>
         <div>
-          <h1 className='text-center font-semibold text-3xl p-5'>Task Management System</h1>
+          <h1 className='text-center font-bold text-2xl p-5'>Task Management System</h1>
           <div className='px-5'>
             <TestTable />
           </div>

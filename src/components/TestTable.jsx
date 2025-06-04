@@ -12,7 +12,7 @@ import Viewtask from './Viewtask';
 export const Data = [
   { id: 1, title: "Design UX/UI", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
   { id: 2, title: "Frontend Dev", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 3, title: "Design UX/UI", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
+  { id: 3, title: "Design UX/UI", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "Pending" },
   { id: 4, title: "Frontend Dev", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
   { id: 5, title: "Design UX/UI", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
   { id: 6, title: "Frontend Dev", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
@@ -81,8 +81,8 @@ const TestTable = () => {
                   <div className="flex items-center">
                     <div
                       className={`flex items-center gap-2 w-[120px] font-semibold text-center p-2 text-white rounded-sm 
-                        ${data.status.toLowerCase() === "completed" ? 'bg-green-500' : 'bg-yellow-500'}`}
-                    >
+                        ${data.status.toLowerCase() === "completed" ? 'bg-green-500' : 
+                          data.status.toLowerCase() === "pending" ? 'bg-orange-500' : 'bg-yellow-500'}`}>
                       <img
                         src={data.status.toLowerCase() === 'completed' ? IconDone : IconGoing}
                         alt="status icon"
