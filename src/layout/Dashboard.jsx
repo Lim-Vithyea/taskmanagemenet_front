@@ -41,12 +41,9 @@ import ParticlesComponent from '../components/Particle';
 const Dashboard = () => {
   return (
     <div className="min-h-screen">
-      <div className="top-0 left-0 w-full">
-        <Navbar />
-      </div>
-      <div className="flex pt-9">
+      <div className="">
         {/* Sidebar */}
-        <div className="w-64 fixed top-16 left-0 h-full z-10">
+        <div className="w-64 fixed top-0 left-0 h-full z-10">
           <Sidebar />
         </div>
         {/* Main Content */}

@@ -1,4 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import AssignTask from './AssignTask';
+import SetEditscreen from './SetEditscreen';
+import IconDelete from "../assets/icon-delete.svg"
+import IconEdit from "../assets/icon-edit.svg"
+import IconDetail from "../assets/icon-detail.svg"
+import IconDone from "../assets/icon-done.svg"
+import IconGoing from "../assets/icon-ongoing.svg"
+
 
 export const Data = [
   { id: 1, title: "Design UX/UI", name: "Sok Chandara", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
@@ -26,46 +34,79 @@ export const Data = [
 ];
 
 const TestTable = () => {
+
+  const [selectUser,setSelecteduser] = useState(null);
+  const [isEdit,setEdit] = useState(false);
+
+  const closeEdit = () => {
+    setEdit(false);
+  }
   return (
     <div className="p-4">
       <div className="overflow-x-autos shadow">
         <table className="w-full text-sm text-left text-gray-700">
           <thead className="text-xs uppercase bg-gray-100 text-blue-500 border-b">
             <tr>
-              <th className="px-6 py-3">Index</th>
-              <th className="px-6 py-3">Task title</th>
-              <th className="px-6 py-3">Assigned to</th>
-              <th className="px-6 py-3">Start-Time</th>
-              <th className="px-6 py-3">completed-Time</th>
-              <th className="px-6 py-3 text-center">Status</th>
-              <th className="px-6 py-3">Action</th>
+              <th className="px-3 py-3">Index</th>
+              <th className="px-3 py-3">Task title</th>
+              <th className="px-3 py-3">Assigned to</th>
+              <th className="px-3 py-3">Start-Time</th>
+              <th className="px-3 py-3">completed-Time</th>
+              <th className="px-3 py-3 text-center">Description</th>
+              <th className="px-3 py-3 text-center">Status</th>
+              <th className="px-3 py-3 text-center">Action</th>
             </tr>
           </thead>
           <tbody>
             {Data.map((data, index) => (
               <tr key={data.id} className="bg-white border-b-2 border-blue-200 hover:bg-gray-50">
-                <td className="px-6 py-4">{index + 1}</td>
-                <td className="px-6 py-4 font-semibold">{data.title}</td>
-                <td className="px-6 py-4 text-blue-600 font-bold whitespace-nowrap">{data.name}</td>
-                <td className="px-6 py-4 font-semibold">{data.timeS}</td>
-                <td className="px-6 py-4 font-semibold">{data.timeE}</td>
-                <td className="px-6 py-4 text-center">
-                <div>
-                    <span
-                    className={`inline-block w-[100px] font-semibold text-center p-2 text-white rounded-sm 
-                        ${data.status.toLowerCase() === "completed" ? 'bg-green-500' : 'bg-yellow-500'}`}>
-                    {data.status}
-                    </span>
-                </div>
+                <td className="px-3 py-4">{index + 1}</td>
+                <td className="px-3 py-4 font-semibold">{data.title}</td>
+                <td className="px-3 py-4 text-blue-600 font-bold whitespace-nowrap">{data.name}</td>
+                <td className="px-3 py-4 font-semibold">{data.timeS}</td>
+                <td className="px-3 py-4 font-semibold">{data.timeE}</td>
+                <td className="px-3 py-4 font-semibold">Description</td>
+                <td className="px-3 py-4 text-center">
+                  <div className="flex items-center">
+                    <div
+                      className={`flex items-center gap-2 w-[120px] font-semibold text-center p-2 text-white rounded-sm 
+                        ${data.status.toLowerCase() === "completed" ? 'bg-green-500' : 'bg-yellow-500'}`}
+                    >
+                      <img
+                        src={data.status.toLowerCase() === 'completed' ? IconDone : IconGoing}
+                        alt="status icon"
+                        className="w-4 h-4"
+                      />
+                      <span className="flex-1">{data.status}</span>
+                    </div>
+                  </div>
                 </td>
                 <td className="px-6 py-4 flex space-x-3">
-                  <a href="#" className="text-blue-600 hover:underline">Edit</a>
-                  <a href="#" className="text-red-600 hover:underline">Remove</a>
+                  <button onClick={()=>{
+                    setSelecteduser(data);
+                    setEdit(true);
+                  }} className=" w-10 h-10 bg-blue-600 text-white rounded-xl">
+                    <div className='flex justify-center'>
+                      <img src={IconEdit} className='w-5 h-5'/>
+                    </div>
+                    </button>
+                  <button className=" w-10 h-10 bg-red-600 text-white rounded-xl">
+                    <div className='flex justify-center'>
+                      <img src={IconDelete} className='w-5 h-5'/>
+                    </div>
+                  </button>
+                  <button className=" w-10 h-10 bg-yellow-500 text-white rounded-xl">
+                    <div className='flex justify-center'>
+                      <img src={IconDetail} className='w-5 h-5'/>
+                    </div>
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      {/* Edit screen */}
+      {isEdit && <SetEditscreen closeEditFunction={closeEdit} userData={selectUser}/>}
       </div>
     </div>
   );

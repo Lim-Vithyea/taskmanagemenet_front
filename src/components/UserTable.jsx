@@ -1,5 +1,8 @@
 import React from 'react'
 import { Data } from './TestTable'
+import IconDelete from "../assets/icon-delete.svg"
+import IconEdit from "../assets/icon-edit.svg"
+import IconDetail from "../assets/icon-detail.svg"
 
 const UserTable = () => {
   return (
@@ -12,7 +15,7 @@ const UserTable = () => {
                   <th className="px-6 py-3">Username</th>
                   <th className="px-6 py-3">Email</th>
                   <th className="px-6 py-3">password</th>
-                  <th className="px-6 py-3 ">Action</th>
+                  <th className="px-6 py-3 text-center ">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -22,9 +25,24 @@ const UserTable = () => {
                     <td className="px-6 py-4 text-blue-600 font-bold whitespace-nowrap">{data.name}</td>
                     <td className="px-6 py-4">Example@gmail.com</td>
                     <td className="px-6 py-4">pa$$w0rd</td>
-                    <td className="px-6 py-4 flex space-x-3 ">
-                      <a href="#" className="text-blue-600 hover:underline">Edit</a>
-                      <a href="#" className="text-red-600 hover:underline">Remove</a>
+                    <td className="px-6 py-4 ">
+                    <td className="px-6 py-4 flex justify-center gap-2">
+                      <button className=" w-10 h-10 bg-blue-600 text-white rounded-xl">
+                        <div className='flex justify-center '>
+                          <img src={IconEdit} className='w-5 h-5'/>
+                        </div>
+                        </button>
+                      <button className=" w-10 h-10 bg-red-600 text-white rounded-xl">
+                        <div className='flex justify-center'>
+                          <img src={IconDelete} className='w-5 h-5'/>
+                        </div>
+                      </button>
+                      <button className=" w-10 h-10 bg-yellow-500 text-white rounded-xl">
+                        <div className='flex justify-center'>
+                          <img src={IconDetail} className='w-5 h-5'/>
+                        </div>
+                      </button>
+                  </td>                     
                     </td>
                   </tr>
                 ))}
