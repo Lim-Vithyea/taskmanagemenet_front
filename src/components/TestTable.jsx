@@ -62,7 +62,7 @@ const TestTable = () => {
               <th className="px-3 py-3">Task title</th>
               <th className="px-3 py-3">Assigned to</th>
               <th className="px-3 py-3">Start-Time</th>
-              <th className="px-3 py-3">completed-Time</th>
+              <th className="px-3 py-3 text-center">completed-Time</th>
               <th className="px-3 py-3 text-center">Description</th>
               <th className="px-3 py-3 text-center">Status</th>
               <th className="px-3 py-3 text-center">Action</th>
@@ -74,8 +74,8 @@ const TestTable = () => {
                 <td className="px-3 py-4 text-center">{index + 1}</td>
                 <td className="px-3 py-4 font-semibold">{data.title}</td>
                 <td className="px-3 py-4 text-blue-600 font-bold whitespace-nowrap">{data.name}</td>
-                <td className="px-3 py-4 font-semibold">{data.timeS}</td>
-                <td className="px-3 py-4 font-semibold">{data.timeE}</td>
+                <td className="px-3 py-4 font-semibold text-green-500">{data.timeS}</td>
+                <td className="px-3 py-4 font-semibold text-red-500 text-center">{data.timeE}</td>
                 <td className="px-3 py-4 font-semibold max-w-[200px] truncate overflow-hidden whitespace-nowrap">{data.desc}</td>
                 <td className="px-3 py-4 text-center">
                   <div className="flex items-center">

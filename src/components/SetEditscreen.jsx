@@ -103,7 +103,7 @@ const SetEditscreen = ({ closeEditFunction, userData }) => {
                 className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                 required>
                 <option value="">Select status</option>
-                <option value="In complete">In completed</option>
+                <option value="Pending">Pending</option>
                 <option value="In Progress">In progress</option>
                 <option value="Completed">Completed</option>
               </select>

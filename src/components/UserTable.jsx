@@ -25,8 +25,7 @@ const UserTable = () => {
                     <td className="px-6 py-4 text-blue-600 font-bold whitespace-nowrap">{data.name}</td>
                     <td className="px-6 py-4">Example@gmail.com</td>
                     <td className="px-6 py-4">pa$$w0rd</td>
-                    <td className="px-6 py-4 ">
-                    <td className="px-6 flex justify-center gap-2">
+                    <td className="px-6 flex justify-center gap-2 py-2">
                       <button className=" w-10 h-10 bg-blue-600 text-white rounded-xl">
                         <div className='flex justify-center '>
                           <img src={IconEdit} className='w-5 h-5'/>
@@ -43,7 +42,6 @@ const UserTable = () => {
                         </div>
                       </button>
                   </td>                     
-                    </td>
                   </tr>
                 ))}
               </tbody>
