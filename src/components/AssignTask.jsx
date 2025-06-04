@@ -67,14 +67,27 @@ const AssignTask = () => {
                 <option>Thoun Sithun</option>
               </select>
             </div>
-            <div className='w-[300px]'>{/* empty to align layout */}</div>
+            <div className='w-[300px] flex flex-col'>
+               <label htmlFor='employee' className='mb-2 text-sm font-medium text-gray-700'>Select status</label>
+                <select
+                id="role"
+                name="role"
+                className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                required
+              >
+                <option>Select status</option>
+                <option value="In complete">In completed</option>
+                <option value="In progress">In progress</option>
+                <option value="Completed">Completed</option>
+                
+                </select>
+            </div>
           </div>
-          <div className="flex justify-end gap-4">
+          <div className="flex justify-end gap-4 pt-5">
             <button
               type="button"
               onClick={isCloseAdd}
-              className="px-6 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg shadow-md transition"
-            >
+              className="px-6 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg shadow-md transition">
               Cancel
             </button>
             <Button name="Save" color="bg-blue-500 hover:bg-blue-600" type="submit" />

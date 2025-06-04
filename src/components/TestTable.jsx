@@ -6,6 +6,7 @@ import IconEdit from "../assets/icon-edit.svg"
 import IconDetail from "../assets/icon-detail.svg"
 import IconDone from "../assets/icon-done.svg"
 import IconGoing from "../assets/icon-ongoing.svg"
+import Viewtask from './Viewtask';
 
 
 export const Data = [
@@ -37,9 +38,19 @@ const TestTable = () => {
 
   const [selectUser,setSelecteduser] = useState(null);
   const [isEdit,setEdit] = useState(false);
+  const [isView,setView] = useState(false);
 
   const closeEdit = () => {
     setEdit(false);
+  }
+
+  const closeView = () => {
+    setView(false);
+  }
+
+  const viewTask = (datauser) => {
+    setSelecteduser(datauser);
+    setView(true);
   }
   return (
     <div className="p-4">
@@ -47,7 +58,7 @@ const TestTable = () => {
         <table className="w-full text-sm text-left text-gray-700">
           <thead className="text-xs uppercase bg-gray-100 text-blue-500 border-b">
             <tr>
-              <th className="px-3 py-3">Index</th>
+              <th className="px-3 py-3">No</th>
               <th className="px-3 py-3">Task title</th>
               <th className="px-3 py-3">Assigned to</th>
               <th className="px-3 py-3">Start-Time</th>
@@ -60,7 +71,7 @@ const TestTable = () => {
           <tbody>
             {Data.map((data, index) => (
               <tr key={data.id} className="bg-white border-b-2 border-blue-200 hover:bg-gray-50">
-                <td className="px-3 py-4">{index + 1}</td>
+                <td className="px-3 py-4 text-center">{index + 1}</td>
                 <td className="px-3 py-4 font-semibold">{data.title}</td>
                 <td className="px-3 py-4 text-blue-600 font-bold whitespace-nowrap">{data.name}</td>
                 <td className="px-3 py-4 font-semibold">{data.timeS}</td>
@@ -85,17 +96,18 @@ const TestTable = () => {
                   <button onClick={()=>{
                     setSelecteduser(data);
                     setEdit(true);
-                  }} className=" w-10 h-10 bg-blue-600 text-white rounded-xl">
+                  }} className=" w-10 h-10 bg-blue-600 text-white rounded-[6px]">
                     <div className='flex justify-center'>
                       <img src={IconEdit} className='w-5 -5'/>
                     </div>
                     </button>
-                  <button className=" w-10 h-10 bg-red-600 text-white rounded-xl">
+                  <button className=" w-10 h-10 bg-red-600 text-white rounded-[6px]">
                     <div className='flex justify-center'>
                       <img src={IconDelete} className='w-5 -5'/>
                     </div>
                   </button>
-                  <button className=" w-10 h-10 bg-yellow-500 text-white rounded-xl">
+                  <button className=" w-10 h-10 bg-yellow-500 text-white rounded-[6px]" 
+                  onClick={() => viewTask(data)}>
                     <div className='flex justify-center'>
                       <img src={IconDetail} className='w-5 -5'/>
                     </div>
@@ -107,6 +119,7 @@ const TestTable = () => {
         </table>
       {/* Edit screen */}
       {isEdit && <SetEditscreen closeEditFunction={closeEdit} userData={selectUser}/>}
+      {isView && <Viewtask closeView={closeView} dataView={selectUser} />}
       </div>
     </div>
   );
