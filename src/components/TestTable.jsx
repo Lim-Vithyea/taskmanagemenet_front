@@ -70,11 +70,11 @@ const TestTable = () => {
               <th className="px-3 py-3">No</th>
               <th className="px-3 py-3">Task title</th>
               <th className="px-3 py-3">Profile</th>
-              <th className="px-3 py-3">Assigned to</th>
-              <th className="px-3 py-3">Start-Time</th>
+              <th className="px-3 py-3">🖊️Assigned to</th>
+              <th className="px-3 py-3 text-center">🗓️Start-Time</th>
               <th className="px-3 py-3 text-center">completed-Time</th>
               <th className="px-3 py-3 text-center">Description</th>
-              <th className="px-3 py-3 text-center">Status</th>
+              <th className="px-3 py-3 text-center">📄Status</th>
               <th className="px-3 py-3 text-center">Action</th>
             </tr>
           </thead>
@@ -83,9 +83,9 @@ const TestTable = () => {
               <tr key={data.id} className="bg-white border-b-2 border-blue-200 hover:bg-gray-50">
                 <td className="px-3 py-4 text-center">{index + 1}</td>
                 <td className="px-3 py-4 font-semibold">{data.title}</td>
-                <td className="px-3 py-4"><img className='rounded-[100px] w-10 h-10' src={data.pf}/></td>
+                <td className="px-3 py-4 text-cen"><img className='rounded-[100px] w-10 h-10' src={data.pf}/></td>
                 <td className="px-3 py-4 text-blue-600 font-bold whitespace-nowrap">{data.name}</td>
-                <td className="px-3 py-4 font-semibold text-green-500">{data.timeS}</td>
+                <td className="px-3 py-4 font-semibold text-green-500 text-center">{data.timeS}</td>
                 <td className="px-3 py-4 font-semibold text-red-500 text-center">{data.timeE}</td>
                 <td className="px-3 py-4 font-semibold max-w-[200px] truncate overflow-hidden whitespace-nowrap">{data.desc}</td>
                 <td className="px-3 py-4 text-center">
@@ -107,18 +107,18 @@ const TestTable = () => {
                   <button onClick={()=>{
                     setSelecteduser(data);
                     setEdit(true);
-                  }} className=" w-10 h-10 bg-blue-600 text-white rounded-[6px]">
+                  }} className=" w-10 h-10 bg-blue-600 text-white rounded-[6px] cursor-pointer">
                     <div className='flex justify-center'>
                       <img src={IconEdit} className='w-5 -5'/>
                     </div>
                     </button>
-                  <button className=" w-10 h-10 bg-red-600 text-white rounded-[6px]"
+                  <button className=" w-10 h-10 bg-red-600 text-white rounded-[6px] cursor-pointer"
                   onClick={()=>deleteTask()}>
                     <div className='flex justify-center'>
                       <img src={IconDelete} className='w-5 -5'/>
                     </div>
                   </button>
-                  <button className=" w-10 h-10 bg-yellow-500 text-white rounded-[6px]" 
+                  <button className=" w-10 h-10 bg-yellow-500 text-white rounded-[6px] cursor-pointer" 
                   onClick={() => viewTask(data)}>
                     <div className='flex justify-center'>
                       <img src={IconDetail} className='w-5 -5'/>
