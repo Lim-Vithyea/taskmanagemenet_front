@@ -56,8 +56,8 @@ const AssignTask = () => {
             <div className='flex flex-col w-[300px]'>
               <label htmlFor='employee' className='mb-2 text-sm font-medium text-gray-700'>Select Employee</label>
               <select
-                id="role"
-                name="role"
+                id="employee"
+                name="employee"
                 className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                 required
               >
@@ -68,10 +68,10 @@ const AssignTask = () => {
               </select>
             </div>
             <div className='w-[300px] flex flex-col'>
-               <label htmlFor='employee' className='mb-2 text-sm font-medium text-gray-700'>Select status</label>
+               <label htmlFor='status' className='mb-2 text-sm font-medium text-gray-700'>Select status</label>
                 <select
-                id="role"
-                name="role"
+                id="status"
+                name="status"
                 className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                 required
               >
@@ -79,9 +79,25 @@ const AssignTask = () => {
                 <option value="In complete">In completed</option>
                 <option value="In progress">In progress</option>
                 <option value="Completed">Completed</option>
-                
                 </select>
             </div>
+          </div>
+          <div className='flex gap-10 justify-center pt-6'>
+            <div className='flex flex-col w-[300px]'>
+              <label htmlFor='employee' className='mb-2 text-sm font-medium text-gray-700'>Select priority</label>
+              <select
+                id="priority"
+                name="priority"
+                className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                required
+              >
+                <option>Select priority</option>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+              </select>
+            </div>
+            <div className='w-[300px] flex flex-col'></div>
           </div>
           <div className="flex justify-end gap-4 pt-5">
             <button

@@ -12,26 +12,26 @@ import profilePic from "../assets/pfpic.jpg"
 
 
 export const Data = [
-  { id: 1, title: "Design UX/UI",pf: profilePic, name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
-  { id: 2, title: "Frontend Dev",pf: profilePic, name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 3, title: "Design UX/UI",pf: profilePic, name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "Pending" },
-  { id: 4, title: "Frontend Dev",pf: profilePic, name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 5, title: "Design UX/UI",pf: profilePic, name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
-  { id: 6, title: "Frontend Dev",pf: profilePic, name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 7, title: "Design UX/UI",pf: profilePic, name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
-  { id: 8, title: "Frontend Dev",pf: profilePic, name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 9, title: "Design UX/UI",pf: profilePic, name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
-  { id: 10, title: "Frontend Dev",pf: profilePic, name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 11, title: "Design UX/UI",pf: profilePic, name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
-  { id: 12, title: "Frontend Dev",pf: profilePic, name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 13, title: "Design UX/UI",pf: profilePic, name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
-  { id: 14, title: "Frontend Dev",pf: profilePic, name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 15, title: "Design UX/UI",pf: profilePic, name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
-  { id: 16, title: "Frontend Dev",pf: profilePic, name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 17, title: "Design UX/UI",pf: profilePic, name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
-  { id: 18, title: "Frontend Dev",pf: profilePic, name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 19, title: "Design UX/UI",pf: profilePic, name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
-  { id: 20, title: "Frontend Dev",pf: profilePic, name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
+  { id: 1, title: "Design UX/UI",pf: profilePic,prio: "low", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
+  { id: 2, title: "Frontend Dev",pf: profilePic,prio: "medium", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
+  { id: 3, title: "Design UX/UI",pf: profilePic,prio: "high", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "Pending" },
+  { id: 4, title: "Frontend Dev",pf: profilePic,prio: "low", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
+  { id: 5, title: "Design UX/UI",pf: profilePic,prio: "medium", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
+  { id: 6, title: "Frontend Dev",pf: profilePic,prio: "high", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
+  { id: 7, title: "Design UX/UI",pf: profilePic,prio: "low", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
+  { id: 8, title: "Frontend Dev",pf: profilePic,prio: "medium", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
+  { id: 9, title: "Design UX/UI",pf: profilePic,prio: "high", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
+  { id: 10, title: "Frontend Dev",pf: profilePic,prio: "low", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
+  { id: 11, title: "Design UX/UI",pf: profilePic,prio: "low", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
+  { id: 12, title: "Frontend Dev",pf: profilePic,prio: "high", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
+  { id: 13, title: "Design UX/UI",pf: profilePic,prio: "low", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
+  { id: 14, title: "Frontend Dev",pf: profilePic,prio: "low", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
+  { id: 15, title: "Design UX/UI",pf: profilePic,prio: "high", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
+  { id: 16, title: "Frontend Dev",pf: profilePic,prio: "medium", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
+  { id: 17, title: "Design UX/UI",pf: profilePic,prio: "medium", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
+  { id: 18, title: "Frontend Dev",pf: profilePic,prio: "high", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
+  { id: 19, title: "Design UX/UI",pf: profilePic,prio: "low", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
+  { id: 20, title: "Frontend Dev",pf: profilePic,prio: "low", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
 
   // Add more with unique `id`s if needed
 ];
@@ -68,12 +68,12 @@ const TestTable = () => {
           <thead className="text-xs uppercase bg-gray-100 text-blue-500 border-b">
             <tr>
               <th className="px-3 py-3">No</th>
+              <th className="px-3 py-3 text-center">Priority</th>
               <th className="px-3 py-3">Task title</th>
               <th className="px-3 py-3">Profile</th>
               <th className="px-3 py-3">🖊️Assigned to</th>
               <th className="px-3 py-3 text-center">🗓️Start-Time</th>
               <th className="px-3 py-3 text-center">completed-Time</th>
-              <th className="px-3 py-3 text-center">Description</th>
               <th className="px-3 py-3 text-center">📄Status</th>
               <th className="px-3 py-3 text-center">Action</th>
             </tr>
@@ -82,12 +82,22 @@ const TestTable = () => {
             {Data.map((data, index) => (
               <tr key={data.id} className="bg-white border-b-2 border-blue-200 hover:bg-gray-50">
                 <td className="px-3 py-4 text-center">{index + 1}</td>
+                <td className="px-3 py-4 text-center">
+                  <div className="flex items-center">
+                    <div
+                      className={`flex items-center gap-2 w-[80px] font-semibold text-center p-2 text-white rounded-sm 
+                        ${data.prio.toLowerCase() === "low" ? 'bg-green-500' : 
+                          data.prio.toLowerCase() === "medium" ? 'bg-orange-500' : 'bg-red-500'}`}>
+                      <span className="flex-1">{data.prio}</span>
+                    </div>
+                  </div>
+                </td>
                 <td className="px-3 py-4 font-semibold">{data.title}</td>
                 <td className="px-3 py-4 text-cen"><img className='rounded-[100px] w-10 h-10' src={data.pf}/></td>
                 <td className="px-3 py-4 text-blue-600 font-bold whitespace-nowrap">{data.name}</td>
                 <td className="px-3 py-4 font-semibold text-green-500 text-center">{data.timeS}</td>
                 <td className="px-3 py-4 font-semibold text-red-500 text-center">{data.timeE}</td>
-                <td className="px-3 py-4 font-semibold max-w-[200px] truncate overflow-hidden whitespace-nowrap">{data.desc}</td>
+                {/* <td className="px-3 py-4 font-semibold max-w-[200px] truncate overflow-hidden whitespace-nowrap">{data.desc}</td> */}
                 <td className="px-3 py-4 text-center">
                   <div className="flex items-center">
                     <div

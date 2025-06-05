@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import Button from './Button';
 
-const DeleteScreen = ({closeDelete,closeDeleteUser}) => {
+const DeleteScreen = ({closeDelete}) => {
 
     const [show,setShow] = useState(false)
      useEffect(() => {
@@ -21,10 +21,7 @@ const DeleteScreen = ({closeDelete,closeDeleteUser}) => {
             <div className="flex justify-center gap-4 pt-5">
             <button
               type="button"
-              onClick={
-                (closeDelete,
-                closeDeleteUser)
-              }
+              onClick={closeDelete}
               className="px-6 text-blue-500 py-2 bg-transparent border-2 border-blue-00 hover:bg-blue-600 hover:text-white
               font-semibold rounded-lg shadow-md transition cursor-pointer">
               Cancel

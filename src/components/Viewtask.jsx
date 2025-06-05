@@ -7,6 +7,7 @@ const Viewtask = ({ closeView, dataView }) => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [status, setStatus] = useState('');
+  const [priority,setPriority] = useState('');
 
   useEffect(() => {
     if (dataView) {
@@ -15,6 +16,7 @@ const Viewtask = ({ closeView, dataView }) => {
       setStartDate(dataView.timeS || '');
       setEndDate(dataView.timeE || '');
       setStatus(dataView.status || '');
+      setPriority(dataView.prio||'')
     }
   }, [dataView]);
 
@@ -30,9 +32,17 @@ const Viewtask = ({ closeView, dataView }) => {
     if (lower === 'pending') return 'bg-orange-400 text-white';
     return 'bg-gray-300 text-black';
   };
+  const getPriorityColor = () => {
+    const lower = priority.toLowerCase();
+    if (lower === 'low') return 'bg-green-500 text-white';
+    if (lower === 'medium') return 'bg-orange-400 text-black';
+    if (lower === 'high') return 'bg-red-500 text-white';
+    return 'bg-gray-300 text-black';
+  };
 
   return (
-    <div className={`fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm transition-all duration-500 ease-out ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+    <div className={`fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm 
+    transition-all duration-500 ease-out ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
       <div className="w-full max-w-3xl bg-white rounded-2xl shadow-xl  sm:p-10">
         <h1 className="text-xl font-bold text-center text-blue-600 mb-8">📄 View Task</h1>
         <div className="space-y-6">
@@ -66,13 +76,22 @@ const Viewtask = ({ closeView, dataView }) => {
             </span>
           </div>
           {/* Status */}
+          <div className='flex justify-between'>
           <div className="border-l-4 border-blue-500 pl-4">
-            <h2 className="text-lg font-semibold text-gray-600 mb-2">Status</h2>
-            <span className={`inline-block px-4 py-2 rounded  uppercase tracking-wide text-sm font-bold ${getStatusColor()}`}>
-              {status}
-            </span>
+              <h2 className="text-lg font-semibold text-gray-600 mb-2">Status</h2>
+              <span className={`inline-block px-4 py-2 rounded  uppercase tracking-wide text-sm font-bold ${getStatusColor()}`}>
+                {status}
+              </span>
+            </div>
+            <div className="border-r-4 border-blue-500 pr-4">
+              <h2 className="text-lg font-semibold text-gray-600 mb-2">Priority</h2>
+              <span className={`inline-block px-4 py-2 rounded  uppercase tracking-wide text-sm font-bold ${(getPriorityColor())}`}>
+                {priority}
+              </span>
+            </div>
           </div>
         </div>
+        
 
         {/* Footer */}
         <div className="mt-5 flex justify-end">
