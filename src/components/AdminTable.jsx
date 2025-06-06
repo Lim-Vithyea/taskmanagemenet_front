@@ -36,17 +36,17 @@ const AdminTable = () => {
                   <th className="px-6 py-3">Index</th>
                   <th className="px-6 py-3">Username</th>
                   <th className="px-6 py-3">Email</th>
-                  <th className="px-6 py-3">password</th>
+                  <th className="px-6 py-3">Created at</th>
                   <th className="px-6 py-3 ">Action</th>
                 </tr>
               </thead>
               <tbody>
                 {AdminData.map((data,index)=>(
-                  <tr className="bg-white border-b-2 border-blue-200 hover:bg-gray-50">
+                  <tr key={data.id} className="bg-white border-b-2 border-blue-200 hover:bg-gray-50">
                     <td className='px-6 py-4'>{index + 1}</td>
                     <td className='px-6 py-4'>{data.name}</td>
                     <td className='px-6 py-4'>{data.email}</td>
-                    <td className='px-6 py-4'>123</td>
+                    <td className="px-3 py-2"> {new Date(data.created_at).toLocaleDateString('en-GB')}</td>
                     <td className="px-6 flex justify-center gap-2 py-2">
                            <button className=" w-10 h-10 bg-blue-600 text-white rounded-xl">
                            <div className='flex justify-center '>
@@ -66,19 +66,6 @@ const AdminTable = () => {
                     </td>
                 </tr>
                 ))}
-               
-                {/* {Data.map((data, index) => (
-                  <tr key={data.id} className="bg-white border-b-2 border-blue-200 hover:bg-gray-50">
-                    <td className="px-6 py-4">{index + 1}</td>
-                    <td className="px-6 py-4 text-blue-600 font-bold whitespace-nowrap">{data.name}</td>
-                    <td className="px-6 py-4">Example@gmail.com</td>
-                    <td className="px-6 py-4">pa$$w0rd</td>
-                    <td className="px-6 py-4 flex space-x-3 ">
-                      <a href="#" className="text-blue-600 hover:underline">Edit</a>
-                      <a href="#" className="text-red-600 hover:underline">Remove</a>
-                    </td>
-                  </tr>
-                ))} */}
               </tbody>
             </table>
           </div>
