@@ -1,10 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Data } from './TestTable'
 import IconDelete from "../assets/icon-delete.svg"
 import IconEdit from "../assets/icon-edit.svg"
 import IconDetail from "../assets/icon-detail.svg"
+import { data } from 'react-router-dom'
+import { useEffect } from 'react'
+import axios from 'axios'
 
 const AdminTable = () => {
+
+  const [AdminData,setAdminData] = useState([]);
+  const [err,setErr] = useState('')
+
+   useEffect(() => {
+  const fetchUsers = async () => {
+    try {
+      const API = import.meta.env.VITE_LARAVEL_API_URL;
+      const response = await axios.get(`${API}getuser`);
+      console.log("Fetched inside fetch:", response.data);
+      setAdminData(response.data);
+    } catch (err) {
+      console.error("Fetch error:", err);
+      setErr(err.response?.data?.error || err.message);
+    }
+  };
+  fetchUsers();
+}, []);
+
   return (
      <div className="px-4 pb-4">
           <div className="overflow-x-autos shadow">
@@ -19,12 +41,13 @@ const AdminTable = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                    <td className='px-6 py-4'>1</td>
-                    <td className='px-6 py-4'>admin</td>
-                    <td className='px-6 py-4'>admin@gmail.com</td>
+                {AdminData.map((data,index)=>(
+                  <tr className="bg-white border-b-2 border-blue-200 hover:bg-gray-50">
+                    <td className='px-6 py-4'>{index + 1}</td>
+                    <td className='px-6 py-4'>{data.name}</td>
+                    <td className='px-6 py-4'>{data.email}</td>
                     <td className='px-6 py-4'>123</td>
-                    <td className="px-6 flex justify-center gap-2 pt-2">
+                    <td className="px-6 flex justify-center gap-2 py-2">
                            <button className=" w-10 h-10 bg-blue-600 text-white rounded-xl">
                            <div className='flex justify-center '>
                            <img src={IconEdit} className='w-5 h-5'/>
@@ -41,8 +64,9 @@ const AdminTable = () => {
                             </div>
                         </button>
                     </td>
-                    
                 </tr>
+                ))}
+               
                 {/* {Data.map((data, index) => (
                   <tr key={data.id} className="bg-white border-b-2 border-blue-200 hover:bg-gray-50">
                     <td className="px-6 py-4">{index + 1}</td>
