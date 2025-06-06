@@ -6,11 +6,13 @@ import person from "../assets/person.svg"
 const ViewuserDetail = ({onClose,userViewData}) => {
     const[name,setName] = useState('')
     const[profile,setProfile] = useState();
+    const[email,setEmail] = useState();
  
     const [show,setShow] = useState(false)
     useEffect(()=>{
         if(userViewData){
             setName(userViewData.name),
+            setEmail(userViewData.email),
             setProfile(userViewData.pf)
         }
     })
@@ -31,7 +33,7 @@ const ViewuserDetail = ({onClose,userViewData}) => {
             {/* <img src={person} className='w-10 h-10'/> */}
              <h1 className='text-center font-semibold text-xl py-2 px-1'>{name}</h1>
         </div>
-        <h1 className='text-center font-normal text-[15px]'>📧Example@gmail.com</h1>
+        <h1 className='text-center font-normal text-[15px]'>📧{email}</h1>
          <div className="mt-5 flex justify-end">
           <button
             onClick={onClose}

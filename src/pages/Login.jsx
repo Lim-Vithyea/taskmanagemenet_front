@@ -19,22 +19,18 @@ const Login = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
-      ...prev,
-      [name]: value
+      ...prev,[name]: value
     }));
   };
 
   const handleLogin = (e) => {
+    // localStorage.setItem("user", JSON.stringify(userData))
     e.preventDefault();
-
-    // Hardcoded users with roles
     const credentials = {
       "Dara": { password: "123", role: "admin" },
       "Seng": { password: "123", role: "user" }
     };
-
     const user = credentials[formData.name];
-
     if (user && user.password === formData.password) {
       setUsers({ name: formData.name, role: user.role });
       navigate("/dashboard");
@@ -42,6 +38,22 @@ const Login = () => {
       console.log("Invalid credentials");
     }
   };
+//   const handleLogin = (e) => {
+//   e.preventDefault();
+//   const credentials = {
+//     "Dara": { password: "123", role: "admin" },
+//     "Seng": { password: "123", role: "user" }
+//   };
+//   const user = credentials[formData.name];
+//   if (user && user.password === formData.password) {
+//     const userData = { name: formData.name, role: user.role };
+//     setUsers(userData);
+//     localStorage.setItem("user", JSON.stringify(userData)); 
+//     navigate("/dashboard"); // Navigate to dashboard
+//   } else {
+//     console.log("Invalid credentials");
+//   }
+// };
 
   return (
     <div>

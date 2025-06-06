@@ -5,7 +5,7 @@ import { useAuthprops } from '../context/AuthContext'
 import profile from "../assets/pfpic.jpg"
 
 const Sidebar = () => {
-    const {users, setUsers} = useAuthprops();
+    const {users} = useAuthprops();
   return (
     <div>
         <aside id="logo-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 " aria-label="Sidebar">
@@ -13,19 +13,19 @@ const Sidebar = () => {
             <ul className="space-y-5 font-medium">
                 <div className='flex justify-center'>
                 <li>
-                    <div className='flex justify-center'>
-                         <img src={ProFilePic} className='w-20 h-20'/>
+                    <div className='flex justify-center pt-5'>
+                         <img src={ProFilePic} className='w-30 h-30'/>
                     </div>
                     <h1 className='text-center font-semibold text-white'>National University of Management</h1>  
                 </li>
                 </div>
-                <li>
+                {/* <li>
                     <div className='flex justify-center'>
                     <img src={profile} className='w-20 h-20 rounded-full'/>
                     </div>
                     <h1 className='text-white text-center font-bold'>Hi, {users?.name || 'Guest'}</h1>
-                    {/* <h2 className='text-white text-center text-sm italic'>{users?.role && `(${users.role})`}</h2> */}
-                </li>
+                    <h2 className='text-white text-center text-sm italic'>{users?.role && `(${users.role})`}</h2>
+                </li> */}
                 <li>
                     <NavLink to="/dashboard/taskmanage" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg className="w-5 h-5 text-white transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">

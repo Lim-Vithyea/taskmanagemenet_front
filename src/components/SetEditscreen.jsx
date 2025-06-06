@@ -107,7 +107,20 @@ const SetEditscreen = ({ closeEditFunction, userData }) => {
                 <option value="Completed">Completed</option>
               </select>
             </div>
-            <div className='w-[300px]'></div> 
+            <div className='flex flex-col w-[300px]'>
+              <label htmlFor='status' className='mb-2 text-sm font-medium text-gray-700'>Priority</label>
+              <select
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+                className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                required>
+                <option value="">Select priority</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+            
           </div>
 
           <div className="flex justify-end gap-4 pt-8">
