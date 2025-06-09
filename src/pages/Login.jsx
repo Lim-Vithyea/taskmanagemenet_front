@@ -5,17 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import ParticlesComponent from '../components/Particle';
 import "../components/particle.css";
 import { useAuthprops } from '../context/AuthContext';
+import axios from 'axios';
 
 const Login = () => {
   const { setUsers } = useAuthprops();
-
   const [formData, setFormData] = useState({
-    name: "",
+    email: "",
     password: ""
   });
 
   const navigate = useNavigate();
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -23,37 +22,22 @@ const Login = () => {
     }));
   };
 
-  const handleLogin = (e) => {
-    // localStorage.setItem("user", JSON.stringify(userData))
-    e.preventDefault();
-    const credentials = {
-      "Dara": { password: "123", role: "admin" },
-      "Seng": { password: "123", role: "user" }
-    };
-    const user = credentials[formData.name];
-    if (user && user.password === formData.password) {
-      setUsers({ name: formData.name, role: user.role });
-      navigate("/dashboard");
+  const handleLogin = async (e) => {
+  e.preventDefault();
+  try {
+    const API = import.meta.env.VITE_LARAVEL_API_URL;
+    const response = await axios.post(`${API}login`, formData);
+    localStorage.setItem('token', response.data.token);
+    localStorage.setItem('user', JSON.stringify(response.data.user));
+    navigate("/dashboard");
+  } catch (error) {
+    if (error.response) {
+      console.error("Login failed:", error.response.data.message);
     } else {
-      console.log("Invalid credentials");
+      console.error("Login error:", error.message);
     }
-  };
-//   const handleLogin = (e) => {
-//   e.preventDefault();
-//   const credentials = {
-//     "Dara": { password: "123", role: "admin" },
-//     "Seng": { password: "123", role: "user" }
-//   };
-//   const user = credentials[formData.name];
-//   if (user && user.password === formData.password) {
-//     const userData = { name: formData.name, role: user.role };
-//     setUsers(userData);
-//     localStorage.setItem("user", JSON.stringify(userData)); 
-//     navigate("/dashboard"); // Navigate to dashboard
-//   } else {
-//     console.log("Invalid credentials");
-//   }
-// };
+  }
+};
 
   return (
     <div>
@@ -71,11 +55,11 @@ const Login = () => {
             <form className='flex justify-center' onSubmit={handleLogin}>
               <div className='flex justify-center flex-col'>
                 <div className='flex flex-col'>
-                  <label>Username</label>
+                  <label>Email</label>
                   <input 
-                    type='text' 
-                    name='name' 
-                    value={formData.name} 
+                    type='email' 
+                    name='email' 
+                    value={formData.email} 
                     onChange={handleInputChange}
                     className='w-[300px] h-[50px] p-2 rounded-[5px] border-3 border-blue-500' 
                     placeholder='Enter your username'

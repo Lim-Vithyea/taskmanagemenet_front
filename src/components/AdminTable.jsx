@@ -16,7 +16,7 @@ const AdminTable = () => {
   const fetchUsers = async () => {
     try {
       const API = import.meta.env.VITE_LARAVEL_API_URL;
-      const response = await axios.get(`${API}getuser`);
+      const response = await axios.get(`${API}adminuser`);
       console.log("Fetched inside fetch:", response.data);
       setAdminData(response.data);
     } catch (err) {
@@ -35,6 +35,7 @@ const AdminTable = () => {
                 <tr>
                   <th className="px-6 py-3">Index</th>
                   <th className="px-6 py-3">Username</th>
+                  <th className="px-6 py-3">Role</th>
                   <th className="px-6 py-3">Email</th>
                   <th className="px-6 py-3">Created at</th>
                   <th className="px-6 py-3 ">Action</th>
@@ -44,7 +45,8 @@ const AdminTable = () => {
                 {AdminData.map((data,index)=>(
                   <tr key={data.id} className="bg-white border-b-2 border-blue-200 hover:bg-gray-50">
                     <td className='px-6 py-4'>{index + 1}</td>
-                    <td className='px-6 py-4'>{data.name}</td>
+                    <td className='px-6 py-4 text-red-500 font-semibold'>{data.name}</td>
+                     <td className="px-3 py-2">{data.role == '1'? "Admin" : "User"}</td>
                     <td className='px-6 py-4'>{data.email}</td>
                     <td className="px-3 py-2"> {new Date(data.created_at).toLocaleDateString('en-GB')}</td>
                     <td className="px-6 flex justify-center gap-2 py-2">

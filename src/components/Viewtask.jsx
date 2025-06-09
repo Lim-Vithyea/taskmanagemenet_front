@@ -91,8 +91,6 @@ const Viewtask = ({ closeView, dataView }) => {
             </div>
           </div>
         </div>
-        
-
         {/* Footer */}
         <div className="mt-5 flex justify-end">
           <button

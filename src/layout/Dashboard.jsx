@@ -4,6 +4,7 @@ import Header from '../components/header/Header';
 import { Routes, Route } from 'react-router-dom';
 import TaskManagement from '../pages/TaskManagement';
 import UserSection from '../pages/UserSection';
+import ProtectedRoute from '../components/ProtectedRoute';
 
 const Dashboard = () => {
   return (
@@ -18,9 +19,9 @@ const Dashboard = () => {
         {/* Page Routes */}
         <div className="p-4">
           <Routes>
-            <Route path="taskmanage" element={<TaskManagement />} />
-            <Route path="usersection" element={<UserSection />} />
-            <Route index element={<TaskManagement />} /> {/* Default route */}
+            <Route path="taskmanage" element={<ProtectedRoute><TaskManagement/></ProtectedRoute>} />
+            <Route path="usersection" element={<ProtectedRoute><UserSection /></ProtectedRoute>} />
+            <Route index element={<ProtectedRoute><TaskManagement/></ProtectedRoute>} /> {/* Default route */}
           </Routes>
         </div>
       </div>
