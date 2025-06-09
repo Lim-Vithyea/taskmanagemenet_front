@@ -4,9 +4,9 @@ import IconDelete from "../assets/icon-delete.svg"
 import IconEdit from "../assets/icon-edit.svg"
 import IconDetail from "../assets/icon-detail.svg"
 import ViewuserDetail from './ViewuserDetail'
-import DeleteScreen from './DeleteScreen'
 import UserEdit from './user/UserEdit'
 import axios from 'axios'
+import UserDelete from './userDelete'
 
 
 const UserTable = () => {
@@ -41,7 +41,8 @@ const UserTable = () => {
   const closeDetailView = () => {
     setViewUser(false);
   }
-  const showDelete = () => {
+  const showDelete = (user) => {
+    setSelectedUser(user)
     setDelete(true);
   }
   const closeDelete = () => {
@@ -90,7 +91,7 @@ const UserTable = () => {
                         </div>
                         </button>
                       <button className=" w-10 h-10 bg-red-600 text-white rounded-[6px] cursor-pointer"
-                      onClick={()=>showDelete()}>
+                      onClick={()=>showDelete(data)}>
                         <div className='flex justify-center'>
                           <img src={IconDelete} className='w-5 h-5'/>
                         </div>
@@ -98,7 +99,7 @@ const UserTable = () => {
                       <button className=" w-10 h-10 bg-yellow-500 text-white rounded-[6px] cursor-pointer"
                       onClick={()=>
                         openUserDetail(data)
-                      }>
+                        }>
                         <div className='flex justify-center'>
                           <img src={IconDetail} className='w-5 h-5'/>
                         </div>
@@ -109,8 +110,14 @@ const UserTable = () => {
               </tbody>
             </table>
             {isViewUser && <ViewuserDetail onClose={closeDetailView} userViewData={isSelectedUser}/>}
-            {isDelete && <DeleteScreen closeDeleteUser={closeDelete}/>}
-            {userEdit && <UserEdit closeEditUser={closeEdit}/>}
+            {isDelete && <UserDelete 
+            closeDelete={closeDelete} 
+            userViewData={isSelectedUser} 
+            onDeleteSuccess={() => {
+              setDelete(false);
+              
+            }}/>}
+            {userEdit && <UserEdit closeEditUser={closeEdit} />}
           </div>
         </div>
   )
