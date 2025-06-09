@@ -1,34 +1,37 @@
-import { createContext, useContext,  useEffect, useState } from "react";
-import axios from "axios";
+import { createContext, useContext, useEffect, useState } from "react";
 
-const Authprops = createContext([])
+const AuthContext = createContext();
 
-export const useAuthprops = () => useContext(Authprops);
+export const useAuth = () => useContext(AuthContext);
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-export const AuthstateContext = ({children}) => {
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("user");
+    
+    if (token && storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+    setLoading(false);
+  }, []);
 
-    const [users,setUsers] = useState([]);
-    useEffect(()=>{
-        const storeUser = localStorage.getItem("user");
-        if(storeUser){
-            setUsers(JSON.parse(storeUser));
-        }
-    },[])
-    const handleLogout = async () => {
-    const API = import.meta.env.VITE_LARAVEL_API_URL;
-    await axios.post(`${API}logout`);
-    setUsers(null); 
-    navigate('/login');
-    };
-
-    const logout = () => {
-    setUsers(null);
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
+  const login = (userData, token) => {
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(userData));
+    setUser(userData);
   };
-    return(
-        <Authprops.Provider value={{users,setUsers,logout,handleLogout}}>
-            {children}
-        </Authprops.Provider>
-    )
-}
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setUser(null);
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout, loading }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};

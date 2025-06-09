@@ -1,12 +1,12 @@
 import React from 'react';
-import { useAuthprops } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import ProfilePic from '../../assets/pfpic.jpg'
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Header = () => {
-  const { users,setUsers,logout,handleLogout } = useAuthprops(); 
+  const { user,setUsers,logout,handleLogout } = useAuth(); 
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -46,8 +46,8 @@ const Header = () => {
               alt="Profile"
               className="w-10 h-10 rounded-full object-cover border-2 border-blue-500" />
             <div className="hidden md:block text-left">
-              <div className="text-sm font-medium">{users?.name}</div>
-              <div className="text-xs text-gray-500">{users?.role === '1'?'Admin':'User'}</div>
+              <div className="text-sm font-medium">{user?.name}</div>
+              <div className="text-xs text-gray-500">{user?.role === '1'?'Admin':'User'}</div>
             </div>
           </button>
           

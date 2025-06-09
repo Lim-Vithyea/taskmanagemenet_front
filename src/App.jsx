@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { StateContext } from './context/StateContext';
 import Dashboard from './layout/Dashboard';
 import Login from './pages/Login';
-import { AuthstateContext } from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -13,11 +14,12 @@ function App() {
     localStorage.setItem('isLoggedIn', 'true'); // Save to localStorage
   };
 
+ 
+
   return (
-    <AuthstateContext>
+    <AuthProvider>
     <StateContext>
       <BrowserRouter>
-      
         <Routes>
           {isLoggedIn && (
           <>
@@ -31,7 +33,8 @@ function App() {
         </Routes>
       </BrowserRouter>
     </StateContext>
-    </AuthstateContext>
+    </AuthProvider>
+   
   );
 }
 
