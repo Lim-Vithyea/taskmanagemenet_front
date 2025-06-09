@@ -13,6 +13,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -29,7 +30,6 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-    
     try {
       const API = import.meta.env.VITE_LARAVEL_API_URL;
       const response = await axios.post(`${API}login`, formData);
@@ -45,8 +45,8 @@ const Login = () => {
     <div>
       <ParticlesComponent id="particles"/>
       <div className='min-h-screen flex items-center justify-center'>
-        <div className='w-[900px] z-10 h-[500px] bg-white pl-[30px] rounded-2xl shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)] flex' >
-          <div className='w-[400px] h-auto bg-white m-auto rounded-2xl shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)]'>
+        <div className='w-[900px] z-10 h-[500px] bg-white pl-[30px] rounded-[5px] shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)] flex' >
+          <div className='w-[400px] h-auto bg-white m-auto rounded-[5px] shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)]'>
             <div className='mt-[40px]'>
               <div className='flex justify-center'>
                 <img src={NUM} className='w-[50px] h-[50px]' alt='logo'/>
@@ -55,7 +55,7 @@ const Login = () => {
               <h1 className='text-center font-semibold text-xl text-blue-500'>Login</h1>
             </div>
             {error && (
-              <div className="mt-4 text-center text-red-500">
+              <div className="mt-2 text-center text-red-500">
                 {error}
               </div>
             )}
@@ -71,8 +71,7 @@ const Login = () => {
                     onChange={handleInputChange}
                     className='w-[300px] h-[50px] p-2 rounded-[5px] border-2 border-blue-500' 
                     placeholder='Enter your email'
-                    required
-                  />
+                    required/>
                   <label className='mt-5'>Password</label>
                   <input 
                     type='password' 
@@ -81,8 +80,7 @@ const Login = () => {
                     onChange={handleInputChange}
                     className='w-[300px] h-[50px] p-2 rounded-[5px] border-2 border-blue-500' 
                     placeholder='Enter your password'
-                    required
-                  />
+                    required/>
                 </div>
                 <div className='py-10 flex justify-center'>
                 <button 

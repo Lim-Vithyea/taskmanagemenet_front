@@ -16,7 +16,7 @@ const UserSection = () => {
       {isOpen && <AddEmployee/>}
       </div>
     </div>
-    <div className='w-full h-auto rounded-2xl shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)]'>
+    <div className='w-full h-auto rounded-[5px] shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)]'>
         {view === "admin" ? 
         <div className='p-5'>
             <AssignButton setisAddStuff={openAdd} name={"Add admin"}/>
