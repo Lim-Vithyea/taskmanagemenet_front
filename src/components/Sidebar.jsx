@@ -3,6 +3,7 @@ import { NavLink, } from 'react-router-dom'
 import ProFilePic from "../assets/NUM.png"
 import { useAuth } from '../context/AuthContext'
 import { ClipboardMinus } from 'lucide-react'
+import { UsersRound } from 'lucide-react'
 
 const Sidebar = () => {
     const {user} = useAuth();
@@ -42,6 +43,13 @@ const Sidebar = () => {
                     className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <ClipboardMinus/>
                     <span className="ms-3">Report</span>
+                </NavLink>
+                </li>
+                <li>
+                <NavLink to="/dashboard/aboutus"
+                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <UsersRound/>
+                    <span className="ms-3">Our team</span>
                 </NavLink>
                 </li>
             </ul>

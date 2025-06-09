@@ -6,6 +6,7 @@ import TaskManagement from '../pages/TaskManagement';
 import UserSection from '../pages/UserSection';
 import ProtectedRoute from '../components/ProtectedRoute';
 import Report from '../pages/Report';
+import OurTeam from '../pages/OurTeam';
 
 const Dashboard = () => {
   return (
@@ -23,6 +24,7 @@ const Dashboard = () => {
             <Route path="taskmanage" element={<ProtectedRoute><TaskManagement/></ProtectedRoute>} />
             <Route path="usersection" element={<ProtectedRoute><UserSection /></ProtectedRoute>} />
             <Route path="report" element={<ProtectedRoute><Report/></ProtectedRoute>} />
+            <Route path="aboutus" element={<ProtectedRoute><OurTeam/></ProtectedRoute>} />
             <Route index element={<ProtectedRoute><TaskManagement/></ProtectedRoute>} /> {/* Default route */}
           </Routes>
         </div>
