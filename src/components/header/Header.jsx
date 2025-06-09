@@ -10,7 +10,6 @@ const Header = () => {
 
   const toggleUserMenu = () => {
     setUserMenuOpen(!userMenuOpen);
-   
   };
  
   

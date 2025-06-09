@@ -5,7 +5,6 @@ import { useAuth } from '../context/AuthContext'
 
 const Sidebar = () => {
     const {user} = useAuth();
-
     // const users = localStorage.getItem('user');
   return (
     <div>

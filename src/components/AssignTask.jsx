@@ -1,15 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import Button from './Button';
 import { useStateProps } from '../context/StateContext';
+import axios from 'axios';
 
 const AssignTask = () => {
   const [show, setShow] = useState(false);
   const {isCloseAdd} = useStateProps();
+  const [employee,setEmployee] = useState([]);
 
   useEffect(() => {
     const timer = setTimeout(() => setShow(true), 10);
     return () => clearTimeout(timer);
   }, []);
+
+  //fetch employee data 
+  useEffect(()=>{
+    const fetchUsers = async () => {
+    try {
+      const API = import.meta.env.VITE_LARAVEL_API_URL;
+      console.log("API URL:", API);
+      const response = await axios.get(`${API}getuser`);
+      console.log("Fetched inside fetch:", response.data);
+      setEmployee(response.data);
+    } catch (err) {
+      console.error("Fetch error:", err);
+      setErr(err.response?.data?.error || err.message);
+    }
+  };
+  fetchUsers();
+  },[])
 
   return (
     <div className={`transition-all duration-500 ease-out ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} flex justify-center items-center fixed inset-0 bg-black/30 backdrop-blur-sm z-50`}>
@@ -59,12 +78,11 @@ const AssignTask = () => {
                 id="employee"
                 name="employee"
                 className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                required
-              >
-                <option>Select an Employee</option>
-                <option>Lim Vithyea</option>
-                <option>Doem Samaun</option>
-                <option>Thoun Sithun</option>
+                required>
+                  <option>Select an employee</option>
+                {employee.map((data) => (
+                  <option className="khmer-text" key={data.id} value={data.id}>{data.name}</option>
+                  ))}
               </select>
             </div>
             <div className='w-[300px] flex flex-col'>

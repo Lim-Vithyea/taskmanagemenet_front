@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Button from './Button';
 import { useStateProps } from '../context/StateContext';
+import { useAuth } from '../context/AuthContext';
 
 const SetEditscreen = ({ closeEditFunction, userData }) => {
   const [show, setShow] = useState(false);
@@ -9,6 +10,7 @@ const SetEditscreen = ({ closeEditFunction, userData }) => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [status, setStatus] = useState('');
+  const {user} = useAuth();
 
   useEffect(() => {
     const timer = setTimeout(() => setShow(true), 10);
@@ -52,8 +54,9 @@ const SetEditscreen = ({ closeEditFunction, userData }) => {
               <input
                 type="text"
                 value={title}
+                readOnly={user?.role === "2"}
                 onChange={(e) => setTitle(e.target.value)}
-                className='p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none'
+                className={`p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none`}
                 placeholder='Add task title'
                 required
               />
@@ -63,6 +66,7 @@ const SetEditscreen = ({ closeEditFunction, userData }) => {
               <label htmlFor='task_desc' className='mb-2 text-sm font-medium text-gray-700'>Task Description</label>
               <textarea
                 value={description}
+                readOnly={user?.role === "2"}
                 onChange={(e) => setDescription(e.target.value)}
                 className='p-3 border border-gray-300 rounded-lg h-[100px] resize-none focus:ring-2 focus:ring-blue-500 outline-none'
                 placeholder='Enter task details...'
@@ -76,6 +80,7 @@ const SetEditscreen = ({ closeEditFunction, userData }) => {
               <input
                 type="date"
                 value={startDate}
+                readOnly={user?.role === "2"}
                 onChange={(e) => setStartDate(e.target.value)}
                 className='p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none'
                 required
@@ -85,6 +90,7 @@ const SetEditscreen = ({ closeEditFunction, userData }) => {
               <label htmlFor='end_date' className='mb-2 text-sm font-medium text-gray-700'>End Date</label>
               <input
                 type="date"
+                readOnly={user?.role === "2"}
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
                 className='p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none'
@@ -111,6 +117,7 @@ const SetEditscreen = ({ closeEditFunction, userData }) => {
               <label htmlFor='status' className='mb-2 text-sm font-medium text-gray-700'>Priority</label>
               <select
                 value={status}
+                readOnly={user?.role === "2"}
                 onChange={(e) => setStatus(e.target.value)}
                 className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                 required>
