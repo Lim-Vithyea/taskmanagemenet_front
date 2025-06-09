@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Button from './Button';
 import { useStateProps } from '../context/StateContext';
 import axios from 'axios';
+import { Calendar, Pen, TrendingUp, User } from 'lucide-react';
 
 const AssignTask = () => {
   const [show, setShow] = useState(false);
@@ -38,7 +39,10 @@ const AssignTask = () => {
         <form>
           <div className='flex gap-10 justify-center pt-2'>
             <div className='flex flex-col w-[300px]'>
-              <label htmlFor='task_title' className='mb-2 text-sm font-medium text-gray-700'>Task Title</label>
+              <div className='flex gap-1'>
+                <label htmlFor='task_title' className='mb-2 text-sm font-medium text-gray-700'>Task Title</label>
+                <Pen className='text-blue-600  w-4 h-4'/>
+              </div>
               <input 
                 type="text"
                 className='p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none'
@@ -46,7 +50,10 @@ const AssignTask = () => {
               required/>
             </div>
             <div className='flex flex-col w-[300px]'>
-              <label htmlFor='task_desc' className='mb-2 text-sm font-medium text-gray-700'>Task Description</label>
+             <div className='flex gap-1'>
+                <label htmlFor='task_desc' className='mb-2 text-sm font-medium text-gray-700'>Task description</label>
+                <Pen className='text-blue-600  w-4 h-4'/>
+              </div>
               <textarea 
                 className='p-3 border border-gray-300 rounded-lg h-[100px] resize-none focus:ring-2 focus:ring-blue-500 outline-none'
                 placeholder='Enter task details...'
@@ -56,14 +63,20 @@ const AssignTask = () => {
 
           <div className='flex gap-10 justify-center pt-6'>
             <div className='flex flex-col w-[300px]'>
-              <label htmlFor='start_date' className='mb-2 text-sm font-medium text-gray-700'>Start Date</label>
+             <div className='flex gap-1'>
+                <label htmlFor='start_date' className='mb-2 text-sm font-medium text-gray-700'>Start date</label>
+                <Calendar className='text-blue-600  w-4 h-4'/>
+              </div>
               <input 
                 type="date"
                 className='p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none'
               required/>
             </div>
             <div className='flex flex-col w-[300px]'>
-              <label htmlFor='end_date' className='mb-2 text-sm font-medium text-gray-700'>End Date</label>
+             <div className='flex gap-1'>
+                <label htmlFor='end_date' className='mb-2 text-sm font-medium text-gray-700'>End date</label>
+                <Calendar className='text-red-600 w-4 h-4'/>
+              </div>
               <input 
                 type="date"
                 className='p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none'
@@ -73,7 +86,10 @@ const AssignTask = () => {
 
           <div className='flex gap-10 justify-center pt-6'>
             <div className='flex flex-col w-[300px]'>
-              <label htmlFor='employee' className='mb-2 text-sm font-medium text-gray-700'>Select Employee</label>
+             <div className='flex gap-1'>
+                <label htmlFor='employee' className='mb-2 text-sm font-medium text-gray-700'>Start date</label>
+                <User className='text-blue-600 w-4 h-4'/>
+              </div>
               <select
                 id="employee"
                 name="employee"
@@ -86,7 +102,10 @@ const AssignTask = () => {
               </select>
             </div>
             <div className='w-[300px] flex flex-col'>
-               <label htmlFor='status' className='mb-2 text-sm font-medium text-gray-700'>Select status</label>
+               <div className='flex gap-1'>
+                <label htmlFor='task_title' className='mb-2 text-sm font-medium text-gray-700'>Start date</label>
+                <TrendingUp className='text-blue-600 w-4 h-4'/>
+              </div>
                 <select
                 id="status"
                 name="status"

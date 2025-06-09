@@ -6,11 +6,40 @@ import IconDetail from "../assets/icon-detail.svg"
 import { data } from 'react-router-dom'
 import { useEffect } from 'react'
 import axios from 'axios'
+import UserDelete from './userDelete';
+import UserEdit from './user/UserEdit'
+import ViewuserDetail from './ViewuserDetail'
 
 const AdminTable = () => {
 
   const [AdminData,setAdminData] = useState([]);
-  const [err,setErr] = useState('')
+  const [err,setErr] = useState('');
+  const [isSelectedUser,setSelectedUser] = useState(false);
+  const [isViewUser,setViewUser] = useState(false);
+  const [isDelete,setDelete] =useState(false);
+  const [userEdit,setUserEdit] = useState(false);
+
+   const openUserDetail = (userViewData) => {
+    setSelectedUser(userViewData);
+    setViewUser(true)
+  }
+  const closeDetailView = () => {
+    setViewUser(false);
+  }
+  const showDelete = (user) => {
+    setSelectedUser(user)
+    setDelete(true);
+  }
+  const closeDelete = () => {
+    setDelete(false)
+  }
+  const openEdit = () => {
+    setUserEdit(true)
+  }
+  const closeEdit = () => {
+    setUserEdit(false);
+  }
+  
 
    useEffect(() => {
   const fetchUsers = async () => {
@@ -49,27 +78,36 @@ const AdminTable = () => {
                      <td className="px-3 py-2">{data.role == '1'? "Admin" : "User"}</td>
                     <td className='px-6 py-4'>{data.email}</td>
                     <td className="px-3 py-2"> {new Date(data.created_at).toLocaleDateString('en-GB')}</td>
-                    <td className="px-6 flex justify-center gap-2 py-2">
-                           <button className=" w-10 h-10 bg-blue-600 text-white rounded-xl">
-                           <div className='flex justify-center '>
-                           <img src={IconEdit} className='w-5 h-5'/>
-                           </div>
-                           </button>
-                           <button className=" w-10 h-10 bg-red-600 text-white rounded-xl">
-                           <div className='flex justify-center'>
-                           <img src={IconDelete} className='w-5 h-5'/>
-                           </div>
-                            </button>
-                            <button className=" w-10 h-10 bg-yellow-500 text-white rounded-xl">
-                            <div className='flex justify-center'>
-                                <img src={IconDetail} className='w-5 h-5'/>
-                            </div>
+                    <td className="px-3 flex justify-center gap-2 py-2">
+                      <button className=" w-10 h-10 bg-blue-600 text-white rounded-[6px] cursor-pointer">
+                        <div className='flex justify-center 'onClick={()=>openEdit()}>
+                          <img src={IconEdit} className='w-5 h-5'/>
+                        </div>
                         </button>
-                    </td>
+                      <button className=" w-10 h-10 bg-red-600 text-white rounded-[6px] cursor-pointer"
+                      onClick={()=>showDelete(data)}>
+                        <div className='flex justify-center'>
+                          <img src={IconDelete} className='w-5 h-5'/>
+                        </div>
+                      </button>
+                      <button className=" w-10 h-10 bg-yellow-500 text-white rounded-[6px] cursor-pointer"
+                      onClick={()=>
+                        openUserDetail(data)
+                        }>
+                        <div className='flex justify-center'>
+                          <img src={IconDetail} className='w-5 h-5'/>
+                        </div>
+                      </button>
+                  </td>      
                 </tr>
                 ))}
               </tbody>
             </table>
+            {isViewUser && <ViewuserDetail onClose={closeDetailView} userViewData={isSelectedUser}/>}
+            {isDelete && <UserDelete closeDelete={closeDelete} userViewData={isSelectedUser} onDeleteSuccess={() => {
+              setDelete(false);
+            }}/>}
+            {userEdit && <UserEdit closeEditUser={closeEdit} />}
           </div>
         </div>
   )

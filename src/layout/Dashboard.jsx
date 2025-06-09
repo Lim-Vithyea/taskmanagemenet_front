@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import TaskManagement from '../pages/TaskManagement';
 import UserSection from '../pages/UserSection';
 import ProtectedRoute from '../components/ProtectedRoute';
+import Report from '../pages/Report';
 
 const Dashboard = () => {
   return (
@@ -21,6 +22,7 @@ const Dashboard = () => {
           <Routes>
             <Route path="taskmanage" element={<ProtectedRoute><TaskManagement/></ProtectedRoute>} />
             <Route path="usersection" element={<ProtectedRoute><UserSection /></ProtectedRoute>} />
+            <Route path="report" element={<ProtectedRoute><Report/></ProtectedRoute>} />
             <Route index element={<ProtectedRoute><TaskManagement/></ProtectedRoute>} /> {/* Default route */}
           </Routes>
         </div>

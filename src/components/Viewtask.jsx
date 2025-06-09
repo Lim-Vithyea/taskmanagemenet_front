@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ArrowLeft, File } from 'lucide-react';
 
 const Viewtask = ({ closeView, dataView }) => {
   const [show, setShow] = useState(false);
@@ -53,7 +54,10 @@ const Viewtask = ({ closeView, dataView }) => {
           </div>
           {/* Description */}
           <div className="border-l-4 border-blue-500 pl-4">
-            <h2 className="text-lg font-semibold text-gray-600">Description</h2>
+            <div className='flex gap-1'>
+              <h2 className="text-lg font-semibold text-gray-600">Description</h2>
+              <File className='w-5 h-5 text-gray-600'/>
+            </div>
             <p className="text-gray-800 bg-gray-100 p-4 rounded-md">
                 Lorem Ipsum is simply dummy text of the printing and 
                 typesetting industry. Lorem Ipsum has been the industry's 
@@ -93,10 +97,12 @@ const Viewtask = ({ closeView, dataView }) => {
         </div>
         {/* Footer */}
         <div className="mt-5 flex justify-end">
+          
           <button
             onClick={closeView}
-            className="px-6 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg shadow transition">
-            🔙 Back
+            className="px-6 py-2 flex gap-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg shadow transition">
+            <ArrowLeft/>
+            Back
           </button>
         </div>
       </div>
