@@ -28,8 +28,8 @@ const UserSection = () => {
         
         <div>
             {view === 'admin' ? 
-            <h1 className='text-center font-semibold text-3xl pt-5 pr-3 pl-5 pb-3 text-red-500'>Admin</h1>:
-            <h1 className='text-center font-semibold text-3xl pt-5 pr-3 pl-5 pb-3 text-blue-500'>Employees</h1>
+            <h1 className='text-center font-semibold text-3xl py-5 pr-3 pl-5  text-red-500'>Admin</h1>:
+            <h1 className='text-center font-semibold text-3xl py-5 pr-3 pl-5 text-blue-500'>Employees</h1>
             }
             <div className='px-9'>
                 <div className='w-full flex justify-between'>

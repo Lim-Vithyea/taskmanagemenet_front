@@ -10,6 +10,7 @@ const SetEditscreen = ({ closeEditFunction, userData }) => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [status, setStatus] = useState('');
+  const [priority,setPriority] = useState('');
   const {user} = useAuth();
 
   useEffect(() => {
@@ -19,17 +20,17 @@ const SetEditscreen = ({ closeEditFunction, userData }) => {
 
   useEffect(() => {
     if (userData) {
-      setTitle(userData.title || '');
-      setDescription(userData.desc || '');
-      setStartDate(userData.timeS || '');
-      setEndDate(userData.timeE || '');
-      setStatus(userData.status || '');
+      setTitle(userData.task_title || '');
+      setDescription(userData.task_desc || '');
+      setStartDate(userData.start_date || '');
+      setEndDate(userData.end_date || '');
+      setStatus(userData.status || {});
+      setPriority(userData.priority || {});
     }
   }, [userData]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const updatedUser = {
       ...userData,
       title,
@@ -38,10 +39,10 @@ const SetEditscreen = ({ closeEditFunction, userData }) => {
       timeE: endDate,
       status,
     };
-
     console.log("Updated Data:", updatedUser);
     closeEditFunction(); 
   };
+
 
   return (
     <div className={`transition-all duration-500 ease-out ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} flex justify-center items-center fixed inset-0 bg-black/30 backdrop-blur-sm z-50`}>
@@ -103,31 +104,30 @@ const SetEditscreen = ({ closeEditFunction, userData }) => {
             <div className='flex flex-col w-[300px]'>
               <label htmlFor='status' className='mb-2 text-sm font-medium text-gray-700'>Status</label>
               <select
-                value={status}
+                value={status?.name }
                 onChange={(e) => setStatus(e.target.value)}
                 className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                 required>
                 <option value="">Select status</option>
-                <option value="Pending">Pending</option>
-                <option value="In Progress">In progress</option>
-                <option value="Completed">Completed</option>
+                <option value="1">Pending</option>
+                <option value="2">In progress</option>
+                <option value="3">Completed</option>
               </select>
             </div>
             <div className='flex flex-col w-[300px]'>
               <label htmlFor='status' className='mb-2 text-sm font-medium text-gray-700'>Priority</label>
               <select
-                value={status}
+                value={priority?.level}
                 readOnly={user?.role === "2"}
                 onChange={(e) => setStatus(e.target.value)}
                 className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                 required>
                 <option value="">Select priority</option>
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
+                <option value="1">Low</option>
+                <option value="2">Medium</option>
+                <option value="3">High</option>
               </select>
             </div>
-            
           </div>
 
           <div className="flex justify-end gap-4 pt-8">
