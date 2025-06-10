@@ -38,6 +38,7 @@ const SetEditscreen = ({ closeEditFunction, userData }) => {
       timeS: startDate,
       timeE: endDate,
       status,
+      priority
     };
     console.log("Updated Data:", updatedUser);
     closeEditFunction(); 
@@ -115,11 +116,10 @@ const SetEditscreen = ({ closeEditFunction, userData }) => {
               </select>
             </div>
             <div className='flex flex-col w-[300px]'>
-              <label htmlFor='status' className='mb-2 text-sm font-medium text-gray-700'>Priority</label>
+              <label htmlFor='status' className='mb-2 text-sm font-medium text-gray-700'>Status</label>
               <select
-                value={priority?.level}
-                readOnly={user?.role === "2"}
-                onChange={(e) => setStatus(e.target.value)}
+                value={priority}
+                onChange={(e) => setPriority(e.target.value)}
                 className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                 required>
                 <option value="">Select priority</option>

@@ -30,7 +30,6 @@ const TestTable = () => {
       }
      catch (err) {
         console.error("Fetch error:", err);
-        setErr(err.response?.data?.error || err.message);
     }
   }
   getTaskData();
@@ -85,7 +84,12 @@ const TestTable = () => {
                     </div>
                   </div>
                 </td>
-                <td className="px-3 py-4 font-semibold">{data.task_title}</td>
+               
+                <td className="font-semibold ">
+                  <div className='px-2 py-4 w-[150px] truncate'>
+                          {data.task_title}
+                  </div>
+                </td>
                 <td className="px-3 py-4 text-cen"><img className='rounded-[100px] w-10 h-10' src={data.pf || profilePic}/></td>
                 <td className="px-3 py-4 text-blue-600 font-bold whitespace-nowrap">{data.employee.name}</td>
                 <td className="px-3 py-4 font-semibold text-green-500 text-center">{data.start_date}</td>
