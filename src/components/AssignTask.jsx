@@ -88,7 +88,7 @@ const AssignTask = () => {
       console.error("Error submitting data:", error);
       setMessage({
         type: 'error',
-        text: error.response?.data?.error || error.response?.data?.details || "❌ Unknown error"
+        text: error.response?.data?.error || error.response?.data?.details || " Unknown error"
       });
     }
   };
@@ -97,15 +97,14 @@ const AssignTask = () => {
     <div className={`transition-all duration-500 ease-out ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} flex justify-center items-center fixed inset-0 bg-black/30 backdrop-blur-sm z-50`}>
       <div className='w-[700px] h-auto bg-white rounded-2xl shadow-2xl px-10 py-8'>
         <h1 className='text-center font-bold text-2xl text-blue-600 mb-6'>⚒️ Assign Task for Employee</h1>
-
+        {/* show message if successful */}
         {message.text && (
-          <div className={`mt-4 p-2 rounded text-center font-medium ${
-            message.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-          }`}>
+          <div className={`mt-4 p-2 rounded text-center font-medium 
+            ${message.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
             {message.text}
           </div>
         )}
-
+        {/* form */}
         <form onSubmit={handleSubmit}>
           <div className='flex gap-10 justify-center pt-2'>
             <div className='flex flex-col w-[300px]'>
@@ -223,7 +222,7 @@ const AssignTask = () => {
             </div>
             <div className='w-[300px] flex flex-col'></div>
           </div>
-
+          {/* end form */}
           <div className="flex justify-end gap-4 pt-5">
             <button
               type="button"

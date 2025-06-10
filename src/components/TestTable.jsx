@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AssignTask from './AssignTask';
 import SetEditscreen from './SetEditscreen';
 import IconDelete from "../assets/icon-delete.svg"
@@ -9,32 +9,9 @@ import IconGoing from "../assets/icon-ongoing.svg"
 import Viewtask from './Viewtask';
 import DeleteScreen from './DeleteScreen';
 import profilePic from "../assets/pfpic.jpg"
+import axios from 'axios';
 
 
-export const Data = [
-  { id: 1, title: "Design UX/UI",pf: profilePic,prio: "low", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
-  { id: 2, title: "Frontend Dev",pf: profilePic,prio: "medium", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 3, title: "Design UX/UI",pf: profilePic,prio: "high", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "Pending" },
-  { id: 4, title: "Frontend Dev",pf: profilePic,prio: "low", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 5, title: "Design UX/UI",pf: profilePic,prio: "medium", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
-  { id: 6, title: "Frontend Dev",pf: profilePic,prio: "high", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 7, title: "Design UX/UI",pf: profilePic,prio: "low", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
-  { id: 8, title: "Frontend Dev",pf: profilePic,prio: "medium", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 9, title: "Design UX/UI",pf: profilePic,prio: "high", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
-  { id: 10, title: "Frontend Dev",pf: profilePic,prio: "low", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 11, title: "Design UX/UI",pf: profilePic,prio: "low", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
-  { id: 12, title: "Frontend Dev",pf: profilePic,prio: "high", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 13, title: "Design UX/UI",pf: profilePic,prio: "low", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
-  { id: 14, title: "Frontend Dev",pf: profilePic,prio: "low", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 15, title: "Design UX/UI",pf: profilePic,prio: "high", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
-  { id: 16, title: "Frontend Dev",pf: profilePic,prio: "medium", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 17, title: "Design UX/UI",pf: profilePic,prio: "medium", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
-  { id: 18, title: "Frontend Dev",pf: profilePic,prio: "high", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-  { id: 19, title: "Design UX/UI",pf: profilePic,prio: "low", name: "Sok Chandara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-1-10", timeE: "2025-2-10", status: "completed" },
-  { id: 20, title: "Frontend Dev",pf: profilePic,prio: "low", name: "Sok Dara",desc: "lorem dahdach uavbau7 ugvbau8fah hfafabau gafhf", timeS: "2025-2-01", timeE: "2025-3-01", status: "In Progress" },
-
-  // Add more with unique `id`s if needed
-];
 
 const TestTable = () => {
 
@@ -42,6 +19,22 @@ const TestTable = () => {
   const [isEdit,setEdit] = useState(false);
   const [isView,setView] = useState(false);
   const [isDelete,setDelete] = useState(false);
+  const [taskData,setTaskData] = useState([]);
+
+  useEffect(()=>{
+    const API = import.meta.env.VITE_LARAVEL_API_URL;
+    const getTaskData = async () => {
+    try{
+        const res = await axios(`${API}get_task`);
+        setTaskData(res.data);
+      }
+     catch (err) {
+        console.error("Fetch error:", err);
+        setErr(err.response?.data?.error || err.message);
+    }
+  }
+  getTaskData();
+  },[])
 
   const closeEdit = () => {
     setEdit(false);
@@ -79,37 +72,37 @@ const TestTable = () => {
             </tr>
           </thead>
           <tbody>
-            {Data.map((data, index) => (
+            {taskData.map((data, index) => (
               <tr key={data.id} className="bg-white border-b-2 border-blue-200 hover:bg-gray-50">
                 <td className="px-3 py-4 text-center">{index + 1}</td>
                 <td className="px-3 py-4 text-center">
                   <div className="flex items-center">
                     <div
                       className={`flex items-center gap-2 w-[80px] font-semibold text-center p-2 text-white rounded-sm 
-                        ${data.prio.toLowerCase() === "low" ? 'bg-green-500' : 
-                          data.prio.toLowerCase() === "medium" ? 'bg-orange-500' : 'bg-red-500'}`}>
-                      <span className="flex-1">{data.prio}</span>
+                        ${data.priority.level.toLowerCase() === "low" ? 'bg-green-500' : 
+                          data.priority.level.toLowerCase() === "medium" ? 'bg-orange-500' : 'bg-red-500'}`}>
+                      <span className="flex-1">{data.priority.level}</span>
                     </div>
                   </div>
                 </td>
-                <td className="px-3 py-4 font-semibold">{data.title}</td>
-                <td className="px-3 py-4 text-cen"><img className='rounded-[100px] w-10 h-10' src={data.pf}/></td>
-                <td className="px-3 py-4 text-blue-600 font-bold whitespace-nowrap">{data.name}</td>
-                <td className="px-3 py-4 font-semibold text-green-500 text-center">{data.timeS}</td>
-                <td className="px-3 py-4 font-semibold text-red-500 text-center">{data.timeE}</td>
-                {/* <td className="px-3 py-4 font-semibold max-w-[200px] truncate overflow-hidden whitespace-nowrap">{data.desc}</td> */}
+                <td className="px-3 py-4 font-semibold">{data.task_title}</td>
+                <td className="px-3 py-4 text-cen"><img className='rounded-[100px] w-10 h-10' src={data.pf || profilePic}/></td>
+                <td className="px-3 py-4 text-blue-600 font-bold whitespace-nowrap">{data.employee.name}</td>
+                <td className="px-3 py-4 font-semibold text-green-500 text-center">{data.start_date}</td>
+                <td className="px-3 py-4 font-semibold text-red-500 text-center">{data.end_date}</td>
+                <td className=" hidden px-3 py-4 font-semibold max-w-[200px] truncate overflow-hidden whitespace-nowrap">{data.task_desc}</td>
                 <td className="px-3 py-4 text-center">
                   <div className="flex items-center">
                     <div
                       className={`flex items-center gap-2 w-[120px] font-semibold text-center p-2 text-white rounded-sm 
-                        ${data.status.toLowerCase() === "completed" ? 'bg-green-500' : 
-                          data.status.toLowerCase() === "pending" ? 'bg-orange-500' : 'bg-yellow-500'}`}>
+                        ${data.status.name === "Completed" ? 'bg-green-500' : 
+                          data.status.name === "Pending" ? 'bg-orange-500' : 'bg-yellow-500'}`}>
                       <img
-                        src={data.status.toLowerCase() === 'completed' ? IconDone : IconGoing}
+                        src={data.status.name === 'Completed' ? IconDone : IconGoing}
                         alt="status icon"
                         className="w-4 -4"
                       />
-                      <span className="flex-1">{data.status}</span>
+                      <span className="flex-1">{data.status.name}</span>
                     </div>
                   </div>
                 </td>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Data } from './TestTable'
+
 import IconDelete from "../assets/icon-delete.svg"
 import IconEdit from "../assets/icon-edit.svg"
 import IconDetail from "../assets/icon-detail.svg"
@@ -55,7 +55,6 @@ const AdminTable = () => {
   };
   fetchUsers();
 }, []);
-
   return (
      <div className="px-4 pb-4">
           <div className="overflow-x-autos shadow">
