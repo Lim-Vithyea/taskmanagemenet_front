@@ -11,8 +11,6 @@ import DeleteScreen from './DeleteScreen';
 import profilePic from "../assets/pfpic.jpg"
 import axios from 'axios';
 
-
-
 const TestTable = () => {
 
   const [selectUser,setSelecteduser] = useState(null);
@@ -34,16 +32,26 @@ const TestTable = () => {
         setTaskData(res.data);
       } catch (err) {
         console.error("Fetch error:", err);
-        // Optional: Display user-friendly error message
       }
     };
   getTaskData();
   },[])
 
-  const closeEdit = () => {
-    setEdit(false);
-  }
+  //get data again after update
+  const fetchTasks = async () => {
+  const API = import.meta.env.VITE_LARAVEL_API_URL;
+  const token = localStorage.getItem('token');
+  const response = await axios.get(`${API}get_task`,
+    { headers: { Authorization: `Bearer ${token}` }}
+  );
+  setTaskData(response.data); 
+  };
 
+//simple function
+  const closeEdit = () => {
+    setEdit(false)
+    fetchTasks();
+  }
   const closeView = () => {
     setView(false);
   }
@@ -52,8 +60,9 @@ const TestTable = () => {
     setSelecteduser(datauser);
     setView(true);
   }
-  const deleteTask = () => {
+  const deleteTask = (datauser) => {
     setDelete(true);
+    setSelecteduser(datauser);
   }
   const closeDelete = () => {
     setDelete(false);
@@ -125,7 +134,7 @@ const TestTable = () => {
                     </div>
                     </button>
                   <button className=" w-10 h-10 bg-red-600 text-white rounded-[6px] cursor-pointer"
-                  onClick={()=>deleteTask()}>
+                  onClick={()=>deleteTask(data)}>
                     <div className='flex justify-center'>
                       <img src={IconDelete} className='w-5 -5'/>
                     </div>
@@ -144,7 +153,7 @@ const TestTable = () => {
       {/* Edit screen */}
       {isEdit && <SetEditscreen closeEditFunction={closeEdit} userData={selectUser}/>}
       {isView && <Viewtask closeView={closeView} dataView={selectUser} />}
-      {isDelete && <DeleteScreen closeDelete={closeDelete}/>}
+      {isDelete && <DeleteScreen closeDelete={closeDelete} userData={selectUser}/>}
       </div>
     </div>
   );

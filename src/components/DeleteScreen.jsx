@@ -2,9 +2,16 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import Button from './Button';
 
-const DeleteScreen = ({closeDelete}) => {
-
+const DeleteScreen = ({closeDelete,userData}) => {
+    const [title, setTitle] = useState('');
     const [show,setShow] = useState(false)
+
+     useEffect(() => {
+        if (userData) {
+          setTitle(userData.task_title || '');
+        }
+      }, [userData]);
+
      useEffect(() => {
         const timer = setTimeout(() => setShow(true), 10);
         return () => clearTimeout(timer);
@@ -17,7 +24,7 @@ const DeleteScreen = ({closeDelete}) => {
         ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <div className='w-[500px] h-auto bg-white rounded-2xl shadow-2xl px-10 py-8'>
                 <h1 className='text-center font-bold text-xl text-red-500'>Alert</h1>
-                <h3 className='text-center px-10 py-6 font-medium'>🗑️Are you sure you want to delete the task????</h3>
+                <h3 className='text-center px-10 py-6 font-medium'>🗑️Are you sure you want to delete the {title}????</h3>
             <div className="flex justify-center gap-4 pt-5">
             <button
               type="button"
