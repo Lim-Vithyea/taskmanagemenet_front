@@ -23,15 +23,20 @@ const TestTable = () => {
 
   useEffect(()=>{
     const API = import.meta.env.VITE_LARAVEL_API_URL;
+    const token = localStorage.getItem('token');
     const getTaskData = async () => {
-    try{
-        const res = await axios(`${API}get_task`);
+      try {
+        const res = await axios.get(`${API}get_task`, { 
+          headers: { 
+            Authorization: `Bearer ${token}` 
+          }
+        });
         setTaskData(res.data);
-      }
-     catch (err) {
+      } catch (err) {
         console.error("Fetch error:", err);
-    }
-  }
+        // Optional: Display user-friendly error message
+      }
+    };
   getTaskData();
   },[])
 

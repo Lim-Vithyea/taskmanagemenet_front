@@ -32,18 +32,19 @@ const AddEmployee = () => {
       role: '',
     });
   };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log('Employee Data:', employeeData);
-  //   clearInput();
-  // };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem('token');
       const API = import.meta.env.VITE_LARAVEL_API_URL;
-      const response = await axios.post(`${API}adduser`, employeeData);
-      // setMessage(response.data.message);
+      const response = await axios.post(`${API}adduser`, employeeData,
+          { 
+          headers: { 
+            Authorization: `Bearer ${token}` 
+          }
+        }
+      );
       setEmployeeData({ name: "", password: "", role: "", email: "" });
       console.log("user data",setEmployeeData);
     } catch (error) {

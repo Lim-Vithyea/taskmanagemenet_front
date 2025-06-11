@@ -22,8 +22,14 @@ const UserTable = () => {
   const fetchUsers = async () => {
     try {
       const API = import.meta.env.VITE_LARAVEL_API_URL;
-      console.log("API URL:", API);
-      const response = await axios.get(`${API}getuser`);
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`${API}getuser`,
+         { 
+          headers: { 
+            Authorization: `Bearer ${token}` 
+          }
+        }
+      );
       console.log("Fetched inside fetch:", response.data);
       setUserData(response.data);
     } catch (err) {
@@ -115,7 +121,6 @@ const UserTable = () => {
             userViewData={isSelectedUser} 
             onDeleteSuccess={() => {
               setDelete(false);
-              
             }}/>}
             {userEdit && <UserEdit closeEditUser={closeEdit} />}
           </div>

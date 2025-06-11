@@ -31,7 +31,13 @@ const AssignTask = () => {
 
     const fetchUsers = async () => {
       try {
-        const response = await axios.get(`${API}getuser`);
+        const token = localStorage.getItem('token');
+        const response = await axios.get(`${API}getuser`,
+           { headers: { 
+            Authorization: `Bearer ${token}` 
+          }
+        }
+        );
         setEmployee(response.data);
       } catch (err) {
         console.error("Fetch error:", err);
@@ -69,9 +75,14 @@ const AssignTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem('token');
       const API = import.meta.env.VITE_LARAVEL_API_URL;
-      await axios.post(`${API}createtask`, taskData);
-
+      await axios.post(`${API}createtask`, taskData,
+          { headers: { 
+            Authorization: `Bearer ${token}` 
+          }
+        }
+      );
       setTaskData({
         task_title: "",
         task_desc: "",

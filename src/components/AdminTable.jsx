@@ -45,7 +45,14 @@ const AdminTable = () => {
   const fetchUsers = async () => {
     try {
       const API = import.meta.env.VITE_LARAVEL_API_URL;
-      const response = await axios.get(`${API}adminuser`);
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`${API}adminuser`,
+         { 
+          headers: { 
+            Authorization: `Bearer ${token}` 
+          }
+        }
+      );
       console.log("Fetched inside fetch:", response.data);
       setAdminData(response.data);
     } catch (err) {
