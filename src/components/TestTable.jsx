@@ -153,7 +153,7 @@ const TestTable = () => {
       {/* Edit screen */}
       {isEdit && <SetEditscreen closeEditFunction={closeEdit} userData={selectUser}/>}
       {isView && <Viewtask closeView={closeView} dataView={selectUser} />}
-      {isDelete && <DeleteScreen closeDelete={closeDelete} userData={selectUser}/>}
+      {isDelete && <DeleteScreen closeDelete={closeDelete} userTaskData={selectUser} onDelete={fetchTasks}/>}
       </div>
     </div>
   );

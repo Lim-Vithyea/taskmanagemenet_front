@@ -1,22 +1,36 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 import Button from './Button';
+import axios from 'axios';
 
-const DeleteScreen = ({closeDelete,userData}) => {
+const DeleteScreen = ({closeDelete,userTaskData,onDelete}) => {
     const [title, setTitle] = useState('');
-    const [show,setShow] = useState(false)
-
+    const [show,setShow] = useState(false);
+    
      useEffect(() => {
-        if (userData) {
-          setTitle(userData.task_title || '');
+        if (userTaskData) {
+          setTitle(userTaskData.task_title || '');
         }
-      }, [userData]);
+      }, [userTaskData]);
 
      useEffect(() => {
         const timer = setTimeout(() => setShow(true), 10);
         return () => clearTimeout(timer);
       }, []);
-    
+
+      const handleDelete = async () => {
+        const API = import.meta.env.VITE_LARAVEL_API_URL;
+        const token = localStorage.getItem('token');
+        try{
+          await axios.delete(`${API}tasks/${userTaskData.id}`, {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          closeDelete();
+          onDelete();
+        } catch (err){
+          console.log("Error:",err)
+        }
+      }
   return (
     <div>
       <div className={`fixed inset-0 z-50 flex items-center justify-center 
@@ -33,10 +47,9 @@ const DeleteScreen = ({closeDelete,userData}) => {
               font-semibold rounded-lg shadow-md transition cursor-pointer">
               Cancel
             </button>
-            <Button name="Delete" color="bg-red-500 hover:bg-red-600" type="submit" />
+            <Button name="Delete" color="bg-red-500 hover:bg-red-600" type="submit" functionDelete={handleDelete} />
           </div>
             </div>
-            
       </div>
     </div>
   )
