@@ -3,14 +3,19 @@ import React, { useState } from 'react';
 import LoginPic from "../assets/login.jpg";
 import NUM from "../assets/NUM.png";
 import { useNavigate, useLocation } from 'react-router-dom';
-import ParticlesComponent from '../components/Particle';
-import "../components/particle.css";
+import ParticlesComponent from '../style/Particle';
+import "../style/particle.css";
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
+import { Mail } from 'lucide-react';
+import { LockKeyhole } from 'lucide-react';
+import { LoadingAnimation } from '../components/TestTable';
+import LoginLoading from '../components/LoginLoading';
 
 const Login = () => {
   const { login } = useAuth();
   const [error, setError] = useState("");
+  const [loading,setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   
@@ -30,8 +35,10 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
     try {
       const API = import.meta.env.VITE_LARAVEL_API_URL;
+      await new Promise(resolve => setTimeout(resolve, 3000))
       const response = await axios.post(`${API}login`, formData);
       login(response.data.user, response.data.token);
       const to = location.state?.from?.pathname || "/dashboard";
@@ -39,6 +46,8 @@ const Login = () => {
     } catch (err) {
       const message = err.response?.data?.message || "Login failed. Please try again.";
       setError(message);
+    } finally {
+      setLoading(false)
     }
   };
   return (
@@ -59,11 +68,10 @@ const Login = () => {
                 {error}
               </div>
             )}
-            
             <form className='flex justify-center' onSubmit={handleLogin}>
               <div className='flex justify-center flex-col'>
                 <div className='flex flex-col'>
-                  <label>Email</label>
+                  <label className='flex'><Mail className='p-1'/>Email</label>
                   <input 
                     type='email' 
                     name='email' 
@@ -72,7 +80,7 @@ const Login = () => {
                     className='w-[300px] h-[50px] p-2 rounded-[5px] border-2 border-blue-500' 
                     placeholder='Enter your email'
                     required/>
-                  <label className='mt-5'>Password</label>
+                  <label className='mt-5 flex'> <LockKeyhole className=' p-1'/>Password</label>
                   <input 
                     type='password' 
                     name='password' 
@@ -97,6 +105,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      {loading && (<LoginLoading/>)}
     </div>
   );
 };
