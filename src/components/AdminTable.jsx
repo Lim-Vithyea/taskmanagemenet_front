@@ -3,12 +3,12 @@ import React, { useState } from 'react'
 import IconDelete from "../assets/icon-delete.svg"
 import IconEdit from "../assets/icon-edit.svg"
 import IconDetail from "../assets/icon-detail.svg"
-import { data } from 'react-router-dom'
 import { useEffect } from 'react'
 import axios from 'axios'
 import UserDelete from './userDelete';
 import UserEdit from './user/UserEdit'
 import ViewuserDetail from './ViewuserDetail'
+import { LoadingAnimation } from './TestTable'
 
 const AdminTable = () => {
 
@@ -18,6 +18,7 @@ const AdminTable = () => {
   const [isViewUser,setViewUser] = useState(false);
   const [isDelete,setDelete] =useState(false);
   const [userEdit,setUserEdit] = useState(false);
+  const [loading,setLoading] = useState(false)
 
    const openUserDetail = (userViewData) => {
     setSelectedUser(userViewData);
@@ -44,6 +45,7 @@ const AdminTable = () => {
    useEffect(() => {
   const fetchUsers = async () => {
     try {
+      setLoading(true)
       const API = import.meta.env.VITE_LARAVEL_API_URL;
       const token = localStorage.getItem('token');
       const response = await axios.get(`${API}adminuser`,
@@ -58,6 +60,8 @@ const AdminTable = () => {
     } catch (err) {
       console.error("Fetch error:", err);
       setErr(err.response?.data?.error || err.message);
+    } finally {
+      setLoading(false);
     }
   };
   fetchUsers();
@@ -77,7 +81,16 @@ const AdminTable = () => {
                 </tr>
               </thead>
               <tbody>
-                {AdminData.map((data,index)=>(
+                {loading ? (
+                 <tr>
+                    <td colSpan="9" className="text-center py-6 text-blue-600 font-semibold">
+                      <div className="flex justify-center items-center py-10">
+                        <img src={LoadingAnimation} alt="Loading..." className="w-20 h-20" />
+                      </div>
+                    </td>
+                 </tr>
+                ):
+                AdminData.map((data,index)=>(
                   <tr key={data.id} className="bg-white border-b-2 border-blue-200 hover:bg-gray-50">
                     <td className='px-6 py-4'>{index + 1}</td>
                     <td className='px-6 py-4 text-red-500 font-semibold'>{data.name}</td>
@@ -85,12 +98,12 @@ const AdminTable = () => {
                     <td className='px-6 py-4'>{data.email}</td>
                     <td className="px-3 py-2"> {new Date(data.created_at).toLocaleDateString('en-GB')}</td>
                     <td className="px-3 flex justify-center gap-2 py-2">
-                      <button className=" w-10 h-10 bg-blue-600 text-white rounded-[6px] cursor-pointer">
+                      <button className=" w-10 h-10 bg-blue-500 text-white rounded-[6px] cursor-pointer">
                         <div className='flex justify-center 'onClick={()=>openEdit()}>
                           <img src={IconEdit} className='w-5 h-5'/>
                         </div>
                         </button>
-                      <button className=" w-10 h-10 bg-red-600 text-white rounded-[6px] cursor-pointer"
+                      <button className=" w-10 h-10 bg-red-500 text-white rounded-[6px] cursor-pointer"
                       onClick={()=>showDelete(data)}>
                         <div className='flex justify-center'>
                           <img src={IconDelete} className='w-5 h-5'/>

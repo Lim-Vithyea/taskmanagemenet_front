@@ -92,16 +92,17 @@ const AssignTask = () => {
         status: "",
         priority_task: ""
       });
-
+      
       setMessage({ type: 'success', text: '✅ Task assigned successfully!' });
       setTimeout(() => setMessage({ type: '', text: '' }), 3000);
+      
     } catch (error) {
       console.error("Error submitting data:", error);
       setMessage({
         type: 'error',
         text: error.response?.data?.error || error.response?.data?.details || " Unknown error"
       });
-    }
+    } 
   };
 
   return (

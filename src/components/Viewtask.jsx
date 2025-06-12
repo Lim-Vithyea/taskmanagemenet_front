@@ -29,15 +29,14 @@ const Viewtask = ({ closeView, dataView }) => {
   const getStatusColor = () => {
     const lower = status?.name?.toLowerCase();
     if (lower === 'completed') return 'bg-green-500 text-white';
-    if (lower === 'in progress') return 'bg-yellow-400 text-black';
+    if (lower === 'in progress') return 'bg-yellow-400 text-white';
     if (lower === 'pending') return 'bg-orange-400 text-white';
     return 'bg-gray-300 text-black';
   };
-
   const getPriorityColor = () => {
     const lower = priority?.level?.toLowerCase();
     if (lower === 'low') return 'bg-green-500 text-white';
-    if (lower === 'medium') return 'bg-orange-400 text-black';
+    if (lower === 'medium') return 'bg-orange-400 text-white';
     if (lower === 'high') return 'bg-red-500 text-white';
     return 'bg-gray-300 text-black';
   };
@@ -95,7 +94,7 @@ const Viewtask = ({ closeView, dataView }) => {
         <div className="mt-5 flex justify-end">
           <button
             onClick={closeView}
-            className="px-6 py-2 flex gap-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg shadow transition">
+            className="px-6 py-2 flex gap-2 bg-red-400 hover:bg-red-500 text-white font-semibold rounded-lg shadow transition">
             <ArrowLeft />
             Back
           </button>

@@ -1,5 +1,7 @@
 import { createContext, useContext, useState } from "react";
-const StateProps = createContext([])
+import axios from "axios";
+
+const StateProps = createContext([]);
 
 export const useStateProps = () => useContext(StateProps);
 
@@ -20,7 +22,6 @@ export const StateContext = ({children}) =>{
     const unShowPanel = () => {
         setShow(false)
     }
-    
     return(
         <StateProps.Provider value={{
             isOpen,
@@ -29,7 +30,7 @@ export const StateContext = ({children}) =>{
             unShowPanel,
             showPanel,
             show,
-            setShow
+            setShow,
             }}>
             {children}
         </StateProps.Provider>

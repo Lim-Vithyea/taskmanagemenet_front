@@ -7,7 +7,7 @@ import ViewuserDetail from './ViewuserDetail'
 import UserEdit from './user/UserEdit'
 import axios from 'axios'
 import UserDelete from './userDelete'
-
+import { LoadingAnimation } from './TestTable'
 
 const UserTable = () => {
   const [isSelectedUser,setSelectedUser] = useState(false);
@@ -16,11 +16,13 @@ const UserTable = () => {
   const [userEdit,setUserEdit] = useState(false);
   const [Userdata,setUserData] = useState([])
   const [err, setErr] = useState("");
+  const [loading,setLoading] = useState(false)
 
   //get user data
   useEffect(() => {
   const fetchUsers = async () => {
     try {
+      setLoading(true)
       const API = import.meta.env.VITE_LARAVEL_API_URL;
       const token = localStorage.getItem('token');
       const response = await axios.get(`${API}getuser`,
@@ -35,6 +37,8 @@ const UserTable = () => {
     } catch (err) {
       console.error("Fetch error:", err);
       setErr(err.response?.data?.error || err.message);
+    } finally {
+      setLoading(false)
     }
   };
   fetchUsers();
@@ -77,7 +81,16 @@ const UserTable = () => {
                 </tr>
               </thead>
               <tbody>
-                {Userdata.map((data, index) => (
+                {loading ?(
+                  <tr>
+                       <td colSpan="9" className="text-center py-6 text-blue-600 font-semibold">
+                         <div className="flex justify-center items-center py-10">
+                            <img src={LoadingAnimation} alt="Loading..." className="w-20 h-20" />
+                        </div>
+                    </td>
+                  </tr>
+                ):
+                Userdata.map((data, index) => (
                   <tr key={data.id} className="bg-white border-b-2 border-blue-200 hover:bg-gray-50">
                     <td className="px-3 py-2 text-center">{index + 1}</td>
                     <td className="px-3 py-2">
@@ -91,12 +104,12 @@ const UserTable = () => {
                     <td className="px-3 py-2">{data.email}</td>
                     <td className="px-3 py-2"> {new Date(data.created_at).toLocaleDateString('en-GB')}</td>
                     <td className="px-3 flex justify-center gap-2 py-2">
-                      <button className=" w-10 h-10 bg-blue-600 text-white rounded-[6px] cursor-pointer">
+                      <button className=" w-10 h-10 bg-blue-500 text-white rounded-[6px] cursor-pointer">
                         <div className='flex justify-center 'onClick={()=>openEdit()}>
                           <img src={IconEdit} className='w-5 h-5'/>
                         </div>
                         </button>
-                      <button className=" w-10 h-10 bg-red-600 text-white rounded-[6px] cursor-pointer"
+                      <button className=" w-10 h-10 bg-red-500 text-white rounded-[6px] cursor-pointer"
                       onClick={()=>showDelete(data)}>
                         <div className='flex justify-center'>
                           <img src={IconDelete} className='w-5 h-5'/>
