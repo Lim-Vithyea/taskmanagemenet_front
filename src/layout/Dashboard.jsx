@@ -7,7 +7,7 @@ import UserSection from '../pages/UserSection';
 import ProtectedRoute from '../components/ProtectedRoute';
 import Report from '../pages/Report';
 import OurTeam from '../pages/OurTeam';
-import UploadProfile from '../components/user/UploadProfile';
+import ProfilePage from '../pages/ProfilePage';
 
 const Dashboard = () => {
   return (
@@ -25,7 +25,8 @@ const Dashboard = () => {
             <Route path="usersection" element={<ProtectedRoute><UserSection /></ProtectedRoute>} />
             <Route path="report" element={<ProtectedRoute><Report/></ProtectedRoute>} />
             <Route path="aboutus" element={<ProtectedRoute><OurTeam/></ProtectedRoute>} />
-            <Route path="profile" element={<ProtectedRoute><UploadProfile/></ProtectedRoute>} />
+            <Route path="profile" element={<ProtectedRoute><ProfilePage/></ProtectedRoute>} />
+            {/* <Route path="profile" element={<ProtectedRoute><UploadProfile/></ProtectedRoute>} /> */}
             <Route index element={<ProtectedRoute><TaskManagement/></ProtectedRoute>} /> {/* Default route */}
           </Routes>
         </div>

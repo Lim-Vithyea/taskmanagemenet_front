@@ -7,7 +7,7 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [userProfile,setUserProfile] = useState([]);
+  // const [userProfile,setUserProfile] = useState([]);
 
   const API_PIC = import.meta.env.VITE_API_PIC;
   const API = import.meta.env.VITE_LARAVEL_API_URL;
