@@ -1,19 +1,24 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 import person from "../assets/person.svg"
+import { useAuth } from '../context/AuthContext';
+import profilePic from "../assets/pfpic.jpg";
 
 
 const ViewuserDetail = ({onClose,userViewData}) => {
     const[name,setName] = useState('')
     const[profile,setProfile] = useState();
     const[email,setEmail] = useState();
+    const[dateJoined,setDatejoined] = useState();
+    const {API_PIC} = useAuth();
  
     const [show,setShow] = useState(false)
     useEffect(()=>{
         if(userViewData){
             setName(userViewData.name),
             setEmail(userViewData.email),
-            setProfile(userViewData.pf)
+            setDatejoined(userViewData.created_at)
+            setProfile(userViewData?.image?.image_path ? `${API_PIC}/storage/${userViewData.image?.image_path}`:profilePic)
         }
     })
     useEffect(() => {
@@ -34,6 +39,7 @@ const ViewuserDetail = ({onClose,userViewData}) => {
              <h1 className='text-center font-semibold text-xl py-2 px-1'>{name}</h1>
         </div>
         <h1 className='text-center font-normal text-[15px]'>📧{email}</h1>
+        <h2 className='text-center font-normal text-[13px py-1'>Joined at {new Date(dateJoined).toLocaleDateString('en-GB')}</h2>
          <div className="mt-5 flex justify-end">
           <button
             onClick={onClose}

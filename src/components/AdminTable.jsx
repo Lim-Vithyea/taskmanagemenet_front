@@ -9,6 +9,8 @@ import UserDelete from './userDelete';
 import UserEdit from './user/UserEdit'
 import ViewuserDetail from './ViewuserDetail'
 import { LoadingAnimation } from './TestTable'
+import { useAuth } from '../context/AuthContext'
+import profilePic from "../assets/pfpic.jpg"
 
 const AdminTable = () => {
 
@@ -18,7 +20,8 @@ const AdminTable = () => {
   const [isViewUser,setViewUser] = useState(false);
   const [isDelete,setDelete] =useState(false);
   const [userEdit,setUserEdit] = useState(false);
-  const [loading,setLoading] = useState(false)
+  const [loading,setLoading] = useState(false);
+  const {API_PIC} = useAuth();
 
    const openUserDetail = (userViewData) => {
     setSelectedUser(userViewData);
@@ -73,11 +76,12 @@ const AdminTable = () => {
               <thead className="text-xs uppercase bg-gray-100 text-blue-500 border-b">
                 <tr>
                   <th className="px-6 py-3">Index</th>
+                  <th className="px-6 py-3">Profile</th>
                   <th className="px-6 py-3">Username</th>
                   <th className="px-6 py-3">Role</th>
-                  <th className="px-6 py-3">Email</th>
+                  <th className="px-6 py-3 text-center">Email</th>
                   <th className="px-6 py-3">Created at</th>
-                  <th className="px-6 py-3 ">Action</th>
+                  <th className="px-6 py-3 text-center">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -93,9 +97,17 @@ const AdminTable = () => {
                 AdminData.map((data,index)=>(
                   <tr key={data.id} className="bg-white border-b-2 border-blue-200 hover:bg-gray-50">
                     <td className='px-6 py-4'>{index + 1}</td>
+                    <td className="px-3 py-2">
+                        <div className='flex justify-center'>
+                          {/* <img className='rounded-[100px] w-10 h-10' src={data.pf}/> */}
+                          <img 
+                            className="rounded-[100px] w-10 h-10"
+                            src={data?.image?.image_path ? `${API_PIC}/storage/${data.image?.image_path}` : profilePic}/>
+                        </div>
+                    </td>
                     <td className='px-6 py-4 text-red-500 font-semibold'>{data.name}</td>
                      <td className="px-3 py-2">{data.role == '1'? "Admin" : "User"}</td>
-                    <td className='px-6 py-4'>{data.email}</td>
+                    <td className='px-6 py-4 text-center'>{data.email}</td>
                     <td className="px-3 py-2"> {new Date(data.created_at).toLocaleDateString('en-GB')}</td>
                     <td className="px-3 flex justify-center gap-2 py-2">
                       <button className=" w-10 h-10 bg-blue-500 text-white rounded-[6px] cursor-pointer">

@@ -3,6 +3,8 @@ import Button from './Button';
 import { useStateProps } from '../context/StateContext';
 import axios from 'axios';
 import { Calendar, Pen, TrendingUp, User } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import profilePic from "../assets/pfpic.jpg"
 
 const AssignTask = ({onTaskAdded}) => {
   const [show, setShow] = useState(false);
@@ -11,6 +13,7 @@ const AssignTask = ({onTaskAdded}) => {
   const [employee, setEmployee] = useState([]);
   const [priority, setPriority] = useState([]);
   const [status, setStatus] = useState([]);
+  const {API_PIC} = useAuth();
   const [taskData, setTaskData] = useState({
     task_title: "",
     task_desc: "",
@@ -192,7 +195,9 @@ const AssignTask = ({onTaskAdded}) => {
                 required>
                 <option>Select an employee</option>
                 {employee.map((data) => (
-                  <option key={data.id} value={data.id}>{data.name}</option>
+                  <option key={data.id} value={data.id}>
+                        {data.name}
+                 </option>
                 ))}
               </select>
             </div>

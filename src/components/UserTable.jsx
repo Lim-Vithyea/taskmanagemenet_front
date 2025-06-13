@@ -8,6 +8,8 @@ import UserEdit from './user/UserEdit'
 import axios from 'axios'
 import UserDelete from './userDelete'
 import { LoadingAnimation } from './TestTable'
+import profilePic from "../assets/pfpic.jpg"
+import { useAuth } from '../context/AuthContext'
 
 const UserTable = () => {
   const [isSelectedUser,setSelectedUser] = useState(false);
@@ -17,6 +19,7 @@ const UserTable = () => {
   const [Userdata,setUserData] = useState([])
   const [err, setErr] = useState("");
   const [loading,setLoading] = useState(false)
+  const {API_PIC} = useAuth();
 
   //get user data
   useEffect(() => {
@@ -71,7 +74,7 @@ const UserTable = () => {
             <table className="w-full text-sm text-left text-gray-700">
               <thead className="text-xs uppercase bg-gray-100 text-blue-500 border-b">
                 <tr>
-                  <th className="px-3 py-2">Index</th>
+                  <th className="px-3 py-2 text-center">Index</th>
                   <th className='px-3 py-2 text-center'>Profile</th>
                   <th className="px-3 py-2">Username</th>
                   <th className="px-3 py-2">Role</th>
@@ -96,7 +99,9 @@ const UserTable = () => {
                     <td className="px-3 py-2">
                       <div className='flex justify-center'>
                           {/* <img className='rounded-[100px] w-10 h-10' src={data.pf}/> */}
-                           <img className='rounded-[100px] w-10 h-10'/>
+                          <img 
+                          className="rounded-[100px] w-10 h-10"
+                          src={data?.image?.image_path ? `${API_PIC}/storage/${data.image?.image_path}` : profilePic}/>
                       </div>
                     </td>
                     <td className="px-3 py-2 text-blue-600 font-bold whitespace-nowrap">{data.name}</td>

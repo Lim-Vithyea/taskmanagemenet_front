@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import ProfilePic from '../../assets/pfpic.jpg'
 import { useState } from 'react';
@@ -9,11 +9,13 @@ import profilePic from '../../assets/pfpic.jpg';
 const Header = () => {
   const { user,logout } = useAuth(); 
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const [userProfile,setUserProfile] = useState([]);
+  const {API_PIC} = useAuth();
 
   const toggleUserMenu = () => {
     setUserMenuOpen(!userMenuOpen);
   };
+
+  
  
   
   return (
@@ -22,13 +24,9 @@ const Header = () => {
           <button 
             className="flex items-center space-x-3 text-gray-700 hover:text-gray-900 focus:outline-none"
             onClick={toggleUserMenu}>
-            <img
-              src={ProfilePic}
-              alt="Profile"
-              className="w-10 h-10 rounded-full object-cover border-2 border-blue-500" />
-              {/* <img 
+              <img 
                 className="w-10 h-10 rounded-full object-cover border-2 border-blue-500"
-                src={data.employee.image?.image_path ? `${API_PIC}/storage/${data.employee.image?.image_path}` : profilePic}/> */}
+                src={user?.image?.image_path ? `${API_PIC}/storage/${user.image.image_path}` : profilePic}/>
             <div className="hidden md:block text-left">
               <div className="text-sm font-medium">{user?.name}</div>
               <div className="text-xs text-gray-500">{user?.role === '1'?'Admin':'User'}</div>
