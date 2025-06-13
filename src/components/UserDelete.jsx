@@ -15,10 +15,13 @@ const UserDelete = ({ closeDelete, userViewData, onDeleteSuccess }) => {
   const deleteUser = async () => {
     try {
       setLoading(true);
+      const token = localStorage.getItem('token')
       const API = import.meta.env.VITE_LARAVEL_API_URL;
-      await axios.delete(`${API}delete/${userViewData.id}`);
+      await axios.delete(`${API}delete/${userViewData.id}`,{
+        headers: { Authorization: `Bearer ${token}` },
+    });
       setLoading(false);
-      onDeleteSuccess(); // callback to refresh list
+      onDeleteSuccess();
     } catch (err) {
       console.error("Delete error:", err);
       setError(err.response?.data?.error || err.message);

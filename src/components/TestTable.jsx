@@ -11,6 +11,7 @@ import DeleteScreen from './DeleteScreen';
 import profilePic from "../assets/pfpic.jpg"
 import axios from 'axios';
 import Loading from "../assets/loading.gif"
+import { useAuth } from '../context/AuthContext';
 
 export const LoadingAnimation = Loading;
 
@@ -22,8 +23,8 @@ const TestTable = () => {
   const [isDelete,setDelete] = useState(false);
   const [taskData,setTaskData] = useState([]);
   const [loading, setLoading] = useState(false);
-
-
+  const {API_PIC} = useAuth();
+  // const API_PIC = 'http://localhost:8000'
   useEffect(()=>{
     const API = import.meta.env.VITE_LARAVEL_API_URL;
     setLoading(true);
@@ -48,11 +49,7 @@ const TestTable = () => {
   getTaskData();
   },[])
 
-//   useEffect(()=>{
-//     fetchTasks()
-//   },[])
-
-//   //get data again after update
+  //get data again after update
  const fetchTasks = async () => {
   setLoading(true);
   const API = import.meta.env.VITE_LARAVEL_API_URL;
@@ -136,7 +133,11 @@ const TestTable = () => {
                           {data.task_title}
                   </div>
                 </td>
-                <td className="px-3 py-4 text-cen"><img className='rounded-[100px] w-10 h-10' src={data.pf || profilePic}/></td>
+                <td className="px-3 py-4 text-cen">
+                <img className="rounded-[100px] w-10 h-10"
+                    src={data.employee.image?.image_path ? `${API_PIC}/storage/${data.employee.image?.image_path}` : profilePic}
+                  />
+                </td>
                 <td className="px-3 py-4 text-blue-600 font-bold whitespace-nowrap text-center">{data.employee.name}</td>
                 <td className="px-3 py-4 font-semibold text-center">{data.assigned_by.name}</td>
                 <td className=" py-4 font-semibold text-blue-500 text-center">{data.start_date}</td>

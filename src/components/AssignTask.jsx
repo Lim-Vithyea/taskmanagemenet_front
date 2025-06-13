@@ -4,7 +4,7 @@ import { useStateProps } from '../context/StateContext';
 import axios from 'axios';
 import { Calendar, Pen, TrendingUp, User } from 'lucide-react';
 
-const AssignTask = () => {
+const AssignTask = ({onTaskAdded}) => {
   const [show, setShow] = useState(false);
   const { isCloseAdd } = useStateProps();
   const [message, setMessage] = useState({ type: '', text: '' });

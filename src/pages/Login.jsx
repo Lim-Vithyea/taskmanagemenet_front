@@ -38,7 +38,7 @@ const Login = () => {
     setLoading(true);
     try {
       const API = import.meta.env.VITE_LARAVEL_API_URL;
-      await new Promise(resolve => setTimeout(resolve, 3000))
+      await new Promise(resolve => setTimeout(resolve, 2000))
       const response = await axios.post(`${API}login`, formData);
       login(response.data.user, response.data.token);
       const to = location.state?.from?.pathname || "/dashboard";
@@ -105,7 +105,9 @@ const Login = () => {
           </div>
         </div>
       </div>
-      {loading && (<LoginLoading/>)}
+      {loading && (
+        <LoginLoading/>
+        )}
     </div>
   );
 };
