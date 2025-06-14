@@ -1,12 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import profilePic from "../assets/pfpic.jpg"
 import UploadProfile from '../components/user/UploadProfile';
+import axios from 'axios';
+import { data } from 'react-router-dom';
 
 
 const ProfilePage = () => {
     const [addProfile,setAddProfile] = useState(false);
-    const {API_PIC,user} = useAuth();
+    const {API_PIC,user,API,token} = useAuth();
+    const [taskCount,setTaskcount] = useState({});
+
+    useEffect(()=>{
+      const getTaskCount = async() => {
+        try{
+          const res = await axios(`${API}gettaskcount`,{
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
+          setTaskcount(res.data);
+          console.log(res.data)
+        } catch(err) {
+          console.log("Error:"+err)
+        }
+      }
+      getTaskCount();
+    },[])
 
     const openAddProfile = () => {
         setAddProfile(true);
@@ -16,10 +36,9 @@ const ProfilePage = () => {
     }
 
   return (
-    <div className="w-full bg-white rounded-md shadow-md overflow-hidden">
+    <div className="w-full bg-white rounded-md shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)] overflow-hidden">
       <div className="relative h-48 bg-cover bg-center">
          <div className="relative h-48 bg-gradient-to-r from-blue-600 to-blue-800"></div>
-
         <div className="absolute -bottom-12 left-[44%] ">
           <img 
             className="w-[150px] h-[150px] rounded-full object-cover border-5 border-white"
@@ -39,21 +58,22 @@ const ProfilePage = () => {
           <button className="border border-blue-500 text-blue-500 px-4 py-1 rounded-md hover:bg-blue-50">Edit username</button>
         </div>
         <div className='flex gap-3 py-5 '>
-            <div className='w-full h-[80px] bg-green-600 rounded-sm'>
+          <div className='w-full h-[90px] bg-blue-500 rounded-sm'>
+                <div className='w-full h-[80px] bg-blue-500 rounded-sm'>
+                    <h2 className='font-semibold text-white py-2 px-2'>Task</h2>
+                    <p className='font-semibold text-white pl-[46%]'>{taskCount.total_task}</p>
+                </div>
+            </div>
+            <div className='w-full h-[90px] bg-green-600 rounded-sm'>
                 <h2 className='font-semibold text-white py-2 px-2'>Task completed</h2>
-                <p className='font-semibold text-white pl-[46%]'>50</p>
+                <p className='font-semibold text-white pl-[46%]'>{taskCount.task_completed}</p>
             </div>
             
-            <div className='w-full h-[80px] bg-yellow-500 rounded-sm'>
+            <div className='w-full h-[90px] bg-yellow-500 rounded-sm'>
                 <h2 className='font-semibold text-white py-2 px-2'>Task in progress</h2>
-                <p className='font-semibold text-white pl-[46%]'>50</p>
+                <p className='font-semibold text-white pl-[46%]'>{taskCount.task_inprogress}</p>
             </div>
-            {/* <div className='w-full h-[80px] bg-green-500 rounded-sm'>
-                <div className='w-full h-[80px] bg-blue-500 rounded-sm'>
-                    <h2 className='font-semibold text-white py-2 px-2'>Task completed</h2>
-                    <p className='font-semibold text-white pl-[46%]'>50</p>
-                </div>
-            </div> */}
+            
         </div>
       </div>
       {addProfile && <UploadProfile closeUploadPF={closeAddProFile}/>}
