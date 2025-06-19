@@ -75,12 +75,12 @@ const AdminTable = () => {
             <table className="w-full text-sm text-left text-gray-700">
               <thead className="text-xs uppercase bg-gray-100 text-blue-500 border-b">
                 <tr>
-                  <th className="px-6 py-3">Index</th>
-                  <th className="px-6 py-3">Profile</th>
+                  <th className="px-3 py-3">Index</th>
+                  <th className="px-6 py-3 text-center">Profile</th>
                   <th className="px-6 py-3">Username</th>
                   <th className="px-6 py-3">Role</th>
                   <th className="px-6 py-3 text-center">Email</th>
-                  <th className="px-6 py-3">Created at</th>
+                  <th className="px-6 py-3 text-center">Created at</th>
                   <th className="px-6 py-3 text-center">Action</th>
                 </tr>
               </thead>
@@ -108,13 +108,13 @@ const AdminTable = () => {
                     <td className='px-6 py-4 text-red-500 font-semibold'>{data.name}</td>
                      <td className="px-3 py-2">{data.role == '1'? "Admin" : "User"}</td>
                     <td className='px-6 py-4 text-center'>{data.email}</td>
-                    <td className="px-3 py-2"> {new Date(data.created_at).toLocaleDateString('en-GB')}</td>
+                    <td className="px-3 py-2 text-center"> {new Date(data.created_at).toLocaleDateString('en-GB')}</td>
                     <td className="px-3 flex justify-center gap-2 py-2">
-                      <button className=" w-10 h-10 bg-blue-500 text-white rounded-[6px] cursor-pointer">
+                      {/* <button className=" w-10 h-10 bg-blue-500 text-white rounded-[6px] cursor-pointer">
                         <div className='flex justify-center 'onClick={()=>openEdit()}>
                           <img src={IconEdit} className='w-5 h-5'/>
                         </div>
-                        </button>
+                        </button> */}
                       <button className=" w-10 h-10 bg-red-500 text-white rounded-[6px] cursor-pointer"
                       onClick={()=>showDelete(data)}>
                         <div className='flex justify-center'>

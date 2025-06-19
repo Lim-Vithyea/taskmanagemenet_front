@@ -19,15 +19,13 @@ const UserTable = () => {
   const [Userdata,setUserData] = useState([])
   const [err, setErr] = useState("");
   const [loading,setLoading] = useState(false)
-  const {API_PIC} = useAuth();
+  const {API_PIC,API,token} = useAuth();
 
   //get user data
   useEffect(() => {
   const fetchUsers = async () => {
     try {
       setLoading(true)
-      const API = import.meta.env.VITE_LARAVEL_API_URL;
-      const token = localStorage.getItem('token');
       const response = await axios.get(`${API}getuser`,
          { 
           headers: { 
@@ -46,6 +44,20 @@ const UserTable = () => {
   };
   fetchUsers();
 }, []);
+
+ const fetchUsers = async () => {
+  setLoading(true);
+  try {
+    const response = await axios.get(`${API}getuser`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    setUserData(response.data);
+  } catch (error) {
+    console.error("Fetch error:", error);
+  } finally {
+    setLoading(false);
+  }
+};
 
   const openUserDetail = (userViewData) => {
     setSelectedUser(userViewData);
@@ -67,6 +79,7 @@ const UserTable = () => {
   }
   const closeEdit = () => {
     setUserEdit(false);
+    fetchUsers();
   }
 
   return (
