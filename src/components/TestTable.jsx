@@ -32,7 +32,7 @@ const TestTable = () => {
     const getTaskData = async () => {
       try {
         //test loading
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        await new Promise(resolve => setTimeout(resolve, 1000));
         const res = await axios.get(`${API}get_task`, { 
           headers: { 
             Authorization: `Bearer ${token}` 

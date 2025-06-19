@@ -61,7 +61,8 @@ const UserTable = () => {
   const closeDelete = () => {
     setDelete(false)
   }
-  const openEdit = () => {
+  const openEdit = (userEditdata) => {
+    setSelectedUser(userEditdata)
     setUserEdit(true)
   }
   const closeEdit = () => {
@@ -110,7 +111,7 @@ const UserTable = () => {
                     <td className="px-3 py-2"> {new Date(data.created_at).toLocaleDateString('en-GB')}</td>
                     <td className="px-3 flex justify-center gap-2 py-2">
                       <button className=" w-10 h-10 bg-blue-500 text-white rounded-[6px] cursor-pointer">
-                        <div className='flex justify-center 'onClick={()=>openEdit()}>
+                        <div className='flex justify-center 'onClick={()=>openEdit(data)}>
                           <img src={IconEdit} className='w-5 h-5'/>
                         </div>
                         </button>
@@ -134,13 +135,8 @@ const UserTable = () => {
               </tbody>
             </table>
             {isViewUser && <ViewuserDetail onClose={closeDetailView} userViewData={isSelectedUser}/>}
-            {isDelete && <UserDelete 
-            closeDelete={closeDelete} 
-            userViewData={isSelectedUser} 
-            onDeleteSuccess={() => {
-              setDelete(false);
-            }}/>}
-            {userEdit && <UserEdit closeEditUser={closeEdit} />}
+            {isDelete && <UserDelete closeDelete={closeDelete} userViewData={isSelectedUser} onDeleteSuccess={() => {setDelete(false)}}/>}
+            {userEdit && <UserEdit closeEditUser={closeEdit} userEditData={isSelectedUser}/>}
           </div>
         </div>
   )
