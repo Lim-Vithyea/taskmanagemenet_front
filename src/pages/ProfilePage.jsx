@@ -3,11 +3,11 @@ import { useAuth } from '../context/AuthContext'
 import profilePic from "../assets/pfpic.jpg"
 import UploadProfile from '../components/user/UploadProfile';
 import axios from 'axios';
-import { data } from 'react-router-dom';
-
+import UserProfileEdit from '../components/user/UserProfileEdit';
 
 const ProfilePage = () => {
     const [addProfile,setAddProfile] = useState(false);
+    const [selfEdit,setSelfedit] = useState(false);
     const {API_PIC,user,API,token} = useAuth();
     const [taskCount,setTaskcount] = useState({});
 
@@ -34,6 +34,15 @@ const ProfilePage = () => {
     const closeAddProFile = () => {
         setAddProfile(false)
     }
+    const openEdit = () => {
+      setSelfedit(true);
+      setTimeout(() => {
+            setSelfedit(false);
+        }, 2000);
+    }
+    const closeEdit = () => {
+      setSelfedit(false);
+    }
 
   return (
     <div className="w-full bg-white rounded-md shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)] overflow-hidden">
@@ -55,7 +64,7 @@ const ProfilePage = () => {
    
         <div className="mt-2 flex space-x-3 justify-center">
           <button onClick={openAddProfile} className="bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600">New Profile</button>
-          <button className="border border-blue-500 text-blue-500 px-4 py-1 rounded-md hover:bg-blue-50">Edit username</button>
+          <button onClick={openEdit} className="border border-blue-500 text-blue-500 px-4 py-1 rounded-md hover:bg-blue-50">Edit username</button>
         </div>
         <div className='flex gap-3 py-5 '>
           <div className='w-full h-[90px] bg-blue-500 rounded-sm'>
@@ -77,6 +86,7 @@ const ProfilePage = () => {
         </div>
       </div>
       {addProfile && <UploadProfile closeUploadPF={closeAddProFile}/>}
+      {selfEdit && <UserProfileEdit closeEdit={closeEdit}/>}
     </div>
   )
 }

@@ -41,10 +41,12 @@ const UserEdit = ({closeEditUser,userEditData}) => {
     email: email,
     role: role
   };
+
   if (newPassword && password) {
     updatedUser.password = password;
     updatedUser.password_confirmation = password;
   }
+
   try {
     const res = await axios.patch(`${API}users/${userId}`, updatedUser, {
       headers: {
@@ -65,12 +67,14 @@ const UserEdit = ({closeEditUser,userEditData}) => {
       flex justify-center items-center fixed inset-0 bg-black/30 backdrop-blur-sm z-50`}>
         <div className='w-[700px] h-auto bg-white rounded-2xl shadow-2xl px-10 py-8'>
           <h1 className=' text-center font-bold text-2xl text-blue-600 mb-6'>🖊️User edit</h1>
+          {/* message */}
            {message.text && (
           <div className={`mt-4 p-2 rounded text-center font-medium 
             ${message.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
             {message.text}
           </div>
         )}
+        {/* form */}
           <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col">
