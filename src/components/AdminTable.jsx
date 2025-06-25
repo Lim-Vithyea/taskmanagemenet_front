@@ -5,9 +5,9 @@ import IconEdit from "../assets/icon-edit.svg"
 import IconDetail from "../assets/icon-detail.svg"
 import { useEffect } from 'react'
 import axios from 'axios'
-import UserDelete from './userDelete';
+import UserDelete from './user/UserDelete';
 import UserEdit from './user/UserEdit'
-import ViewuserDetail from './ViewuserDetail'
+import ViewuserDetail from './user/ViewuserDetail'
 import { LoadingAnimation } from './TestTable'
 import { useAuth } from '../context/AuthContext'
 import profilePic from "../assets/pfpic.jpg"

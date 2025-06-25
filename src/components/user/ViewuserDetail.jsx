@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
-import person from "../assets/person.svg"
-import { useAuth } from '../context/AuthContext';
-import profilePic from "../assets/pfpic.jpg";
+import { useAuth } from '../../context/AuthContext';
+import profilePic from "../../assets/pfpic.jpg";
 
 
 const ViewuserDetail = ({onClose,userViewData}) => {
@@ -29,7 +28,7 @@ const ViewuserDetail = ({onClose,userViewData}) => {
   return (
     <div className={`fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm 
     transition-all duration-500 ease-out ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <div className="w-full max-w-3xl bg-white rounded-2xl shadow-xl  sm:p-10">
+        <div className="w-full max-w-3xl bg-white rounded-xs shadow-xl  sm:p-10">
         <h1 className='text-center font-bold text-2xl text-blue-600'>📄User profile</h1>
         <div className='flex justify-center py-4'>
             <img src={profile} className='w-30 h-30 rounded-[100px]'/>

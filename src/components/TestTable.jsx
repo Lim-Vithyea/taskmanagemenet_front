@@ -64,11 +64,11 @@ const TestTable = () => {
 
   return (
     <div className="w-full">
-      <div className="overflow-x rounded-lg shadow border border-gray-200 bg-white">
+      <div className="overflow-x-auto rounded-sm shadow border border-gray-200 bg-white">
         <div className='overflow-x-auto'>
-        <table className="min-w-full overflow-x text-sm sm:text-sm text-gray-800">
+        <table className="min-w-full text-sm sm:text-sm text-gray-800">
           <thead className="bg-gray-100 text-blue-600 uppercase">
-            <tr className="text-left">
+            <tr className="text-left ">
               <th className="px-3 py-3">No</th>
               <th className="px-3 py-3 text-center">Priority</th>
               <th className="px-3 py-3">Task Title</th>

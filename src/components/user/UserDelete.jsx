@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Button from "./Button";
+import Button from "../Button";
 
 const UserDelete = ({ closeDelete, userViewData, onDeleteSuccess }) => {
   const [show, setShow] = useState(false);
@@ -31,7 +31,7 @@ const UserDelete = ({ closeDelete, userViewData, onDeleteSuccess }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm transition-all duration-500 ease-out">
-      <div className={`w-[500px] bg-white rounded-2xl shadow-2xl px-10 py-8 transition-all duration-500 ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+      <div className={`w-[500px] bg-white rounded-xs shadow-2xl px-10 py-8 transition-all duration-500 ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <h1 className="text-center font-bold text-xl text-red-500">⚠️ Confirm Delete</h1>
         <h3 className="text-center px-6 py-6 font-medium">
           Are you sure you want to delete <strong>{userViewData?.name}</strong>?

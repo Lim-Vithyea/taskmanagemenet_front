@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react'
 import IconDelete from "../assets/icon-delete.svg"
 import IconEdit from "../assets/icon-edit.svg"
 import IconDetail from "../assets/icon-detail.svg"
-import ViewuserDetail from './ViewuserDetail'
+import ViewuserDetail from './user/ViewuserDetail'
 import UserEdit from './user/UserEdit'
 import axios from 'axios'
-import UserDelete from './userDelete'
+import UserDelete from './user/UserDelete'
 import { LoadingAnimation } from './TestTable'
 import profilePic from "../assets/pfpic.jpg"
 import { useAuth } from '../context/AuthContext'

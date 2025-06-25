@@ -44,7 +44,7 @@ const Viewtask = ({ closeView, dataView }) => {
   return (
     <div className={`fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm 
     transition-all duration-500 ease-out ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-xl sm:p-10">
+      <div className="w-full max-w-3xl bg-white rounded-xs shadow-xl sm:p-10">
         <h1 className="text-xl font-bold text-center text-blue-600 mb-8">📄 View Task</h1>
         <div className="space-y-6">
           {/* Title */}
