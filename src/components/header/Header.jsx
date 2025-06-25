@@ -17,25 +17,14 @@ const Header = ({ onSidebarToggle }) => {
 
   return (
     <header className="flex justify-between items-center bg-white px-4 py-2 shadow-md sm:px-6">
-      {/* Hamburger for mobile */}
-      <button
-        className="sm:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        onClick={onSidebarToggle}
-        aria-label="Toggle sidebar"
-      >
-        <Menu size={24} />
-      </button>
-
-      <div className="text-lg font-semibold text-gray-700 flex-1 text-center sm:text-left">
-        Welcome
-      </div>
+      {/* Empty div */}
+      <div></div> 
 
       {/* User Profile*/}
       <div className="relative" ref={dropdownRef}>
         <button
           className="flex items-center gap-3 text-gray-700 hover:text-gray-900 focus:outline-none"
-          onClick={toggleUserMenu}
-        >
+          onClick={toggleUserMenu}>
           <img
             className="w-10 h-10 rounded-full object-cover border-2 border-blue-500"
             src={profileImage}
