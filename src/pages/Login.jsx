@@ -55,7 +55,7 @@ const Login = () => {
       <ParticlesComponent id="particles"/>
       <div className='min-h-screen flex items-center justify-center'>
         <div className='w-[900px] z-10 h-[500px] bg-white pl-[30px] rounded-[5px] shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)] flex' >
-          <div className='w-[400px] h-auto bg-white m-auto rounded-[5px] shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)]'>
+          <div className='w-[400px] h-auto bg-white m-auto rounded-[5px] '>
             <div className='mt-[40px]'>
               <div className='flex justify-center'>
                 <img src={NUM} className='w-[50px] h-[50px]' alt='logo'/>
@@ -68,34 +68,41 @@ const Login = () => {
                 {error}
               </div>
             )}
-            <form className='flex justify-center' onSubmit={handleLogin}>
-              <div className='flex justify-center flex-col'>
+            <form className='flex justify-center w-full px-4 sm:px-0' onSubmit={handleLogin}>
+              <div className='flex flex-col w-full max-w-xs'>
                 <div className='flex flex-col'>
-                  <label className='flex'><Mail className='p-1'/>Email</label>
+                  <label className='flex items-center'>
+                    <Mail className='p-1' />Email
+                  </label>
                   <input 
                     type='email' 
                     name='email' 
                     value={formData.email} 
                     onChange={handleInputChange}
-                    className='w-[300px] h-[50px] p-2 rounded-[5px] border-2 border-blue-500' 
+                    className='w-full h-[50px] p-2 rounded-[5px] border-2 border-blue-500' 
                     placeholder='Enter your email'
-                    required/>
-                  <label className='mt-5 flex'> <LockKeyhole className=' p-1'/>Password</label>
+                    required
+                  />
+                  <label className='mt-5 flex items-center'>
+                    <LockKeyhole className='p-1' />Password
+                  </label>
                   <input 
                     type='password' 
                     name='password' 
                     value={formData.password} 
                     onChange={handleInputChange}
-                    className='w-[300px] h-[50px] p-2 rounded-[5px] border-2 border-blue-500' 
+                    className='w-full h-[50px] p-2 rounded-[5px] border-2 border-blue-500' 
                     placeholder='Enter your password'
-                    required/>
+                    required
+                  />
                 </div>
                 <div className='py-10 flex justify-center'>
-                <button 
-                  type="submit"
-                  className=' px-[100px] py-[10px] cursor-pointer bg-blue-500 rounded-[5px] hover:bg-blue-600 transition-all duration-300'>
-                  <span className='font-bold text-white'>Login</span>
-                </button>
+                  <button 
+                    type="submit"
+                    className='w-full max-w-xs px-10 py-[10px] cursor-pointer bg-blue-500 rounded-[5px] hover:bg-blue-600 transition-all duration-300'
+                  >
+                    <span className='font-bold text-white'>Login</span>
+                  </button>
                 </div>
               </div>
             </form>

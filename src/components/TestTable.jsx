@@ -1,193 +1,171 @@
 import React, { useEffect, useState } from 'react';
 import AssignTask from './AssignTask';
 import SetEditscreen from './SetEditscreen';
-import IconDelete from "../assets/icon-delete.svg"
-import IconEdit from "../assets/icon-edit.svg"
-import IconDetail from "../assets/icon-detail.svg"
-import IconDone from "../assets/icon-done.svg"
-import IconGoing from "../assets/icon-ongoing.svg"
+import IconDelete from "../assets/icon-delete.svg";
+import IconEdit from "../assets/icon-edit.svg";
+import IconDetail from "../assets/icon-detail.svg";
+import IconDone from "../assets/icon-done.svg";
+import IconGoing from "../assets/icon-ongoing.svg";
 import Viewtask from './Viewtask';
 import DeleteScreen from './DeleteScreen';
-import profilePic from "../assets/pfpic.jpg"
+import profilePic from "../assets/pfpic.jpg";
 import axios from 'axios';
-import Loading from "../assets/loading.gif"
+import Loading from "../assets/loading.gif";
 import { useAuth } from '../context/AuthContext';
 
 export const LoadingAnimation = Loading;
 
 const TestTable = () => {
-
-  const [selectUser,setSelecteduser] = useState(null);
-  const [isEdit,setEdit] = useState(false);
-  const [isView,setView] = useState(false);
-  const [isDelete,setDelete] = useState(false);
-  const [taskData,setTaskData] = useState([]);
+  const [selectUser, setSelectedUser] = useState(null);
+  const [isEdit, setEdit] = useState(false);
+  const [isView, setView] = useState(false);
+  const [isDelete, setDelete] = useState(false);
+  const [taskData, setTaskData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const {API_PIC} = useAuth();
-  // const API_PIC = 'http://localhost:8000'
-  useEffect(()=>{
+  const { API_PIC } = useAuth();
+
+  const fetchTasks = async () => {
     const API = import.meta.env.VITE_LARAVEL_API_URL;
-    setLoading(true);
     const token = localStorage.getItem('token');
-    const getTaskData = async () => {
-      try {
-        //test loading
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        const res = await axios.get(`${API}get_task`, { 
-          headers: { 
-            Authorization: `Bearer ${token}` 
-          }
-        });
-        setTaskData(res.data);
-        
-      } catch (err) {
-        console.error("Fetch error:", err);
-      } finally {
-         setLoading(false);
-      }
-    };
-  getTaskData();
-  },[])
+    setLoading(true);
+    try {
+      const res = await axios.get(`${API}get_task`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setTaskData(res.data);
+    } catch (error) {
+      console.error("Fetch error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  //get data again after update
- const fetchTasks = async () => {
-  setLoading(true);
-  const API = import.meta.env.VITE_LARAVEL_API_URL;
-  const token = localStorage.getItem('token');
-  try {
-    const response = await axios.get(`${API}get_task`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    setTaskData(response.data);
-  } catch (error) {
-    console.error("Fetch error:", error);
-  } finally {
-    setLoading(false);
-  }
-};
-
-
-//simple function
-  const closeEdit = () => {
-    setEdit(false)
+  useEffect(() => {
     fetchTasks();
-  }
-  const closeView = () => {
-    setView(false);
-  }
+  }, []);
 
-  const viewTask = (datauser) => {
-    setSelecteduser(datauser);
+  const closeEdit = () => {
+    setEdit(false);
+    fetchTasks();
+  };
+
+  const closeView = () => setView(false);
+  const closeDelete = () => setDelete(false);
+
+  const handleView = (task) => {
+    setSelectedUser(task);
     setView(true);
-  }
-  const deleteTask = (datauser) => {
+  };
+
+  const handleDelete = (task) => {
+    setSelectedUser(task);
     setDelete(true);
-    setSelecteduser(datauser);
-  }
-  const closeDelete = () => {
-    setDelete(false);
-  }
+  };
+
   return (
-    <div className="p-4">
-      <div className="overflow-x-autos shadow">
-        <table className="w-full text-sm text-left text-gray-700">
-          <thead className="text-xs uppercase bg-gray-100 text-blue-500 border-b">
-            <tr>
+    <div className="w-full">
+      <div className="overflow-x rounded-lg shadow border border-gray-200 bg-white">
+        <div className='overflow-x-auto'>
+        <table className="min-w-full overflow-x text-sm sm:text-sm text-gray-800">
+          <thead className="bg-gray-100 text-blue-600 uppercase">
+            <tr className="text-left">
               <th className="px-3 py-3">No</th>
               <th className="px-3 py-3 text-center">Priority</th>
-              <th className="px-3 py-3">Task title</th>
-              <th className="px-3 py-3">Profile</th>
-              <th className="px-3 py-3">🖊️Assigned to</th>
-              <th className="px-3 py-3 text-center"> by</th>
-              <th className="px-3 py-3 text-center">🗓️start_date</th>
-              <th className="px-3 py-3 text-center">🗓️complete_date</th>
-              <th className="px-3 py-3 text-center">📄Status</th>
+              <th className="px-3 py-3">Task Title</th>
+              <th className="px-3 py-3 text-center">Profile</th>
+              <th className="px-3 py-3 text-center">Assigned To</th>
+              <th className="px-3 py-3 text-center">By</th>
+              <th className="px-3 py-3 text-center">Start Date</th>
+              <th className="px-3 py-3 text-center">End Date</th>
+              <th className="px-3 py-3 text-center">Status</th>
               <th className="px-3 py-3 text-center">Action</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan="9" className="text-center py-6 text-blue-600 font-semibold">
-                 <div className="flex justify-center items-center py-10">
-                  <img src={LoadingAnimation} alt="Loading..." className="w-20 h-20" />
-                </div>
-                 </td>
+                <td colSpan="10" className="py-10 text-center">
+                  <img src={LoadingAnimation} alt="Loading..." className="mx-auto w-16 h-16" />
+                </td>
               </tr>
-            ):taskData.map((data, index) => (
-              <tr key={data.id} className="bg-white border-b-2 border-blue-200 hover:bg-gray-50">
-                <td className="px-3 py-4 text-center">{index + 1}</td>
-                <td className="px-1 py-4 text-center">
-                  <div className="flex items-center">
-                    <div
-                      className={`flex items-center gap-2 w-[80px] font-semibold text-center p-2 text-white rounded-sm 
-                        ${data.priority.level.toLowerCase() === "low" ? 'bg-green-500' : 
-                          data.priority.level.toLowerCase() === "medium" ? 'bg-orange-500' : 'bg-red-500'}`}>
-                      <span className="flex-1">{data.priority.level}</span>
-                    </div>
-                  </div>
-                </td>
-               
-                <td className="font-semibold ">
-                  <div className='px-2 py-4 w-[150px] truncate'>
-                          {data.task_title}
-                  </div>
-                </td>
-                <td className="px-3 py-4 text-cen">
-                <img className="rounded-[100px] w-10 h-10"
-                    src={data.employee.image?.image_path ? `${API_PIC}/storage/${data.employee.image?.image_path}` : profilePic}
-                  />
-                </td>
-                <td className="px-3 py-4 text-blue-600 font-bold whitespace-nowrap text-center">{data.employee.name}</td>
-                <td className="px-3 py-4 font-semibold text-center">{data.assigned_by.name}</td>
-                <td className=" py-4 font-semibold text-blue-500 text-center">{data.start_date}</td>
-                <td className=" py-4 font-semibold text-red-500 text-center">{data.end_date}</td>
-                <td className=" hidden px-3 py-4 font-semibold max-w-[200px] truncate overflow-hidden whitespace-nowrap">{data.task_desc}</td>
-                <td className="py-4 text-center">
-                  <div className="flex items-center">
-                    <div
-                      className={`flex items-center gap-2 w-[120px] font-semibold text-center p-2 text-white rounded-sm 
-                        ${data.status.name === "Completed" ? 'bg-green-500' : 
-                          data.status.name === "Pending" ? 'bg-orange-500' : 'bg-yellow-500'}`}>
-                      <img
-                        src={data.status.name === 'Completed' ? IconDone : IconGoing}
-                        alt="status icon"
-                        className="w-4 -4"
+            ) : (
+              taskData.map((task, index) => (
+                <tr
+                  key={task.id}
+                  className="border-b border-gray-200 hover:bg-gray-50 transition-colors"
+                >
+                  <td className="px-3 py-4 text-center">{index + 1}</td>
+                  <td className="px-3 py-4 text-center">
+                    <span
+                      className={`inline-block w-20 text-sm text-white font-semibold py-1 px-2 rounded ${
+                        task.priority.level.toLowerCase() === 'low'
+                          ? 'bg-green-500': task.priority.level.toLowerCase() === 'medium'? 'bg-yellow-500': 'bg-red-500'}`}>
+                      {task.priority.level}
+                    </span>
+                  </td>
+                  <td className="px-3 py-4 max-w-[180px] truncate">{task.task_title}</td>
+                  <td className="px-3 py-4 text-center">
+                    <img
+                      className="w-10 h-10 rounded-full object-cover mx-auto"
+                      src={task.employee.image?.image_path? `${API_PIC}/storage/${task.employee.image.image_path}`: profilePic}
+                      alt="Employee"
                       />
-                      <span className="flex-1">{data.status.name}</span>
+                  </td>
+                  <td className="px-3 py-4 text-center font-semibold text-blue-600">
+                    {task.employee.name}
+                  </td>
+                  <td className="px-3 py-4 text-center font-medium">{task.assigned_by.name}</td>
+                  <td className="px-3 py-4 text-center text-blue-600">{task.start_date}</td>
+                  <td className="px-3 py-4 text-center text-red-500">{task.end_date}</td>
+                  <td className="px-3 py-4 text-center">
+                    <div
+                      className={`inline-flex items-center gap-2 text-white px-2 py-1 rounded text-sm ${
+                        task.status.name === 'Completed'
+                          ? 'bg-green-500'
+                          : task.status.name === 'Pending'
+                          ? 'bg-orange-500'
+                          : 'bg-yellow-500'
+                      }`}>
+                      <img src={task.status.name === 'Completed' ? IconDone : IconGoing} alt="status" className="w-4 h-4"/>
+                      {task.status.name}
                     </div>
-                  </div>
-                </td>
-                <td className="px-6 py-4 flex space-x-3">
-                  <button onClick={()=>{
-                    setSelecteduser(data);
-                    setEdit(true);
-                  }} className=" w-10 h-10 bg-blue-500 text-white rounded-[6px] cursor-pointer">
-                    <div className='flex justify-center'>
-                      <img src={IconEdit} className='w-5 -5'/>
+                  </td>
+                  <td className="px-3 py-4 text-center">
+                    <div className="flex justify-center space-x-2">
+                      <button
+                        onClick={() => {
+                          setSelectedUser(task);
+                          setEdit(true);
+                        }}
+                        className="p-2 bg-blue-500 rounded hover:bg-blue-600"
+                      >
+                        <img src={IconEdit} className="w-4 h-4" alt="Edit" />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(task)}
+                        className="p-2 bg-red-500 rounded hover:bg-red-600"
+                      >
+                        <img src={IconDelete} className="w-4 h-4" alt="Delete" />
+                      </button>
+                      <button
+                        onClick={() => handleView(task)}
+                        className="p-2 bg-yellow-500 rounded hover:bg-yellow-600"
+                      >
+                        <img src={IconDetail} className="w-4 h-4" alt="View" />
+                      </button>
                     </div>
-                    </button>
-                  <button className=" w-10 h-10 bg-red-500 text-white rounded-[6px] cursor-pointer"
-                  onClick={()=>deleteTask(data)}>
-                    <div className='flex justify-center'>
-                      <img src={IconDelete} className='w-5 -5'/>
-                    </div>
-                  </button>
-                  <button className=" w-10 h-10 bg-yellow-500 text-white rounded-[6px] cursor-pointer" 
-                  onClick={() => viewTask(data)}>
-                    <div className='flex justify-center'>
-                      <img src={IconDetail} className='w-5 -5'/>
-                    </div>
-                  </button>
-                </td>
-              </tr>
-            ))}
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
-      {/* Edit screen */}
-      {isEdit && <SetEditscreen closeEditFunction={closeEdit} userData={selectUser}/>}
-      {isView && <Viewtask closeView={closeView} dataView={selectUser} />}
-      {isDelete && <DeleteScreen closeDelete={closeDelete} userTaskData={selectUser} onDelete={fetchTasks}/>}
+        </div>
+
+        {isEdit && (<SetEditscreen closeEditFunction={closeEdit} userData={selectUser} />)}
+        {isView && <Viewtask closeView={closeView} dataView={selectUser} />}
+        {isDelete && (<DeleteScreen closeDelete={closeDelete} userTaskData={selectUser} onDelete={fetchTasks}/>
+        )}
       </div>
     </div>
   );
