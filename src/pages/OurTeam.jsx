@@ -13,7 +13,7 @@ const TeamData = [
 
 const OurTeam = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-[100%] flex flex-col">
       {/* Main content */}
       <div className="flex-1 flex flex-col items-center py-5 px-4">
         <h1 className="text-2xl font-semibold text-center mb-2">Meet our awesome Team</h1>
