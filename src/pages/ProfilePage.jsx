@@ -67,20 +67,19 @@ const ProfilePage = () => {
           <button onClick={openEdit} className="border border-blue-500 text-blue-500 px-4 py-1 rounded-md hover:bg-blue-50">Edit username</button>
         </div>
         <div className='flex gap-3 py-5 '>
-          <div className='w-full h-[90px] bg-blue-500 rounded-sm'>
-                <div className='w-full h-[80px] bg-blue-500 rounded-sm'>
-                    <h2 className='font-semibold text-white py-2 px-2'>Task</h2>
-                    <p className='font-semibold text-white pl-[46%]'>{taskCount.total_task}</p>
+                <div className='w-full h-[90px] bg-blue-500/10 border-2 border-blue-500 rounded-sm'>
+                    <h2 className='font-semibold text-blue-500 py-2 px-2'>Task</h2>
+                    <p className='font-semibold text-blue-500 pl-[46%]'>{taskCount.total_task}</p>
                 </div>
-            </div>
-            <div className='w-full h-[90px] bg-green-600 rounded-sm'>
-                <h2 className='font-semibold text-white py-2 px-2'>Task completed</h2>
-                <p className='font-semibold text-white pl-[46%]'>{taskCount.task_completed}</p>
+            
+            <div className='w-full h-[90px] bg-green-500/10 border-2 border-green-500 rounded-sm'>
+                <h2 className='font-semibold text-green-400 py-2 px-2'>Task completed</h2>
+                <p className='font-semibold text-green-400 pl-[46%]'>{taskCount.task_completed}</p>
             </div>
             
-            <div className='w-full h-[90px] bg-yellow-500 rounded-sm'>
-                <h2 className='font-semibold text-white py-2 px-2'>Task in progress</h2>
-                <p className='font-semibold text-white pl-[46%]'>{taskCount.task_inprogress}</p>
+            <div className='w-full h-[90px] bg-yellow-500/10 border-2 border-yellow-500 rounded-sm'>
+                <h2 className='font-semibold text-yellow-400 py-2 px-2'>Task in progress</h2>
+                <p className='font-semibold text-yellow-400 pl-[46%]'>{taskCount.task_inprogress}</p>
             </div>
             
         </div>

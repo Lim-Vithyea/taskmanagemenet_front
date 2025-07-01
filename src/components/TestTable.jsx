@@ -97,9 +97,12 @@ const TestTable = () => {
                   <td className="px-3 py-4 text-center">{index + 1}</td>
                   <td className="px-3 py-4 text-center">
                     <span
-                      className={`inline-block w-20 text-sm text-white font-semibold py-1 px-2 rounded ${
+                      className={`inline-block w-20 text-smfont-semibold py-1 px-2 rounded ${
                         task.priority.level.toLowerCase() === 'low'
-                          ? 'bg-green-500': task.priority.level.toLowerCase() === 'medium'? 'bg-yellow-500': 'bg-red-500'}`}>
+                          ? 'bg-green-500/10 border-green-500 border-1 text-green-400': 
+                          task.priority.level.toLowerCase() === 'medium'? 
+                          'bg-yellow-500/10 border-yellow-500 border-1 text-yellow-400': 
+                          'bg-red-500/10 border-red-500 border-1 text-red-400'}`}>
                       {task.priority.level}
                     </span>
                   </td>
@@ -119,12 +122,12 @@ const TestTable = () => {
                   <td className="px-3 py-4 text-center text-red-500">{task.end_date}</td>
                   <td className="px-3 py-4 text-center">
                     <div
-                      className={`inline-flex items-center gap-2 text-white px-2 py-1 rounded text-sm ${
+                      className={`inline-flex items-center gap-2  px-2 py-1 rounded text-sm ${
                         task.status.name === 'Completed'
-                          ? 'bg-green-500'
+                          ? 'bg-green-500/10 border-green-500 border-1 text-green-400'
                           : task.status.name === 'Pending'
-                          ? 'bg-orange-500'
-                          : 'bg-yellow-500'
+                          ? 'bg-orange-500/10 border-orange-500 border-1 text-orange-400'
+                          : 'bg-yellow-500/10 border-yellow-500 border-1 text-yellow-400'
                       }`}>
                       <img src={task.status.name === 'Completed' ? IconDone : IconGoing} alt="status" className="w-4 h-4"/>
                       {task.status.name}

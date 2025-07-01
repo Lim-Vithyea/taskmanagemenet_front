@@ -18,7 +18,9 @@ const Header = ({ onSidebarToggle }) => {
   return (
     <header className="flex justify-between items-center bg-white px-4 py-2 shadow-md sm:px-6">
       {/* Empty div */}
-      <div></div> 
+      <div>
+        <h1 className='text-lg font-medium'>Task Management by Group 4</h1>
+      </div> 
 
       {/* User Profile*/}
       <div className="relative" ref={dropdownRef}>

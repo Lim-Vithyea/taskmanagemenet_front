@@ -34,7 +34,7 @@ const UserSection = () => {
             onClick={() => setView('admin')}
             className={`w-1/2 py-2 font-semibold text-sm sm:text-base transition-all duration-200 ${
               view === 'admin'
-                ? 'bg-blue-900 text-white border-b-4 border-green-400'
+                ? 'bg-blue-500 text-white border-b-4 border-green-400'
                 : 'bg-blue-700 text-white hover:bg-blue-800'
             }`}
           >
@@ -44,7 +44,7 @@ const UserSection = () => {
             onClick={() => setView('user')}
             className={`w-1/2 py-2 font-semibold text-sm sm:text-base transition-all duration-200 ${
               view === 'user'
-                ? 'bg-blue-900 text-white border-b-4 border-green-400'
+                ? 'bg-blue-500 text-white border-b-4 border-green-400'
                 : 'bg-blue-700 text-white hover:bg-blue-800'
             }`}
           >

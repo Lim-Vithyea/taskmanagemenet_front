@@ -28,16 +28,16 @@ const Viewtask = ({ closeView, dataView }) => {
 
   const getStatusColor = () => {
     const lower = status?.name?.toLowerCase();
-    if (lower === 'completed') return 'bg-green-500 text-white';
-    if (lower === 'in progress') return 'bg-yellow-400 text-white';
-    if (lower === 'pending') return 'bg-orange-400 text-white';
+    if (lower === 'completed') return 'bg-green-500/10 border-green-500 border-1 text-green-400';
+    if (lower === 'in progress') return 'bg-orange-500/10 border-yellow-500 border-1 text-yellow-400';
+    if (lower === 'pending') return 'bg-red-500/10 border-red-500 border-1 text-red-400';
     return 'bg-gray-300 text-black';
   };
   const getPriorityColor = () => {
     const lower = priority?.level?.toLowerCase();
-    if (lower === 'low') return 'bg-green-500 text-white';
-    if (lower === 'medium') return 'bg-orange-400 text-white';
-    if (lower === 'high') return 'bg-red-500 text-white';
+    if (lower === 'low') return 'bg-green-500/10 border-green-500 border-1 text-green-400';
+    if (lower === 'medium') return 'bg-orange-500/10 border-orange-500 border-1 text-orange-400';
+    if (lower === 'high') return 'bg-red-500/10 border-red-500 border-1 text-red-400';
     return 'bg-gray-300 text-black';
   };
 
@@ -64,13 +64,13 @@ const Viewtask = ({ closeView, dataView }) => {
           </div>
           {/* Start and End Dates */}
           <div className="flex items-center justify-center gap-6 flex-wrap">
-            <span className="bg-green-500 text-white px-4 py-2 rounded-lg shadow-md text-sm sm:text-base font-semibold">
+            <span className="bg-green-500/10 text-green-500 border-1 border-green-500 px-4 py-2 rounded-lg shadow-md text-sm sm:text-base font-semibold">
               📅 Start: {startDate}
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="bg-red-500 text-white px-4 py-2 rounded-lg shadow-md text-sm sm:text-base font-semibold">
+            <span className="bg-red-500/10 text-red-400 border-1 border-red-400 px-4 py-2 rounded-lg shadow-md text-sm sm:text-base font-semibold">
               🛑 End: {endDate}
             </span>
           </div>
