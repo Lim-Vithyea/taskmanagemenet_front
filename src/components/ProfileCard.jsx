@@ -11,7 +11,7 @@ const ProfileCard = ({name,pic,facbookLink,githubLink}) => {
             <div className="flex flex-col items-center pb-10">
                 <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={pic} alt="Bonnie image"/>
                 <h5 className="mb-1 text-xl font-medium text-gray-900">{name}</h5>
-                <span className="text-sm text-gray-500 dark:text-gray-400">IT Student</span>
+                <span className="text-sm text-blue-500 bg-blue-500/20 border-1 border-blue-500 rounded-[5px] px-3">IT Student</span>
                 <p className='text-center text-sm py-2 text-gray-500'>Even though you don't give up doesn't mean you will make it</p>
                 <div className="flex mt-4 md:mt-2">
                     <a href={facbookLink} className="inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
