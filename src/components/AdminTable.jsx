@@ -106,7 +106,7 @@ const AdminTable = () => {
                         </div>
                     </td>
                     <td className='px-6 py-4 text-red-500 font-semibold'>{data.name}</td>
-                     <td className="px-3 py-2">{data.role == '1'? "Admin" : "User"}</td>
+                     <td className="px-3 py-2"><span className='bg-red-500/20 rounded-[5px] text-red-400 border-1 border-red-400 px-2'>{data.role == '1'? "Admin" : "User"}</span></td>
                     <td className='px-6 py-4 text-center'>{data.email}</td>
                     <td className="px-3 py-2 text-center"> {new Date(data.created_at).toLocaleDateString('en-GB')}</td>
                     <td className="px-3 flex justify-center gap-2 py-2">

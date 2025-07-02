@@ -119,7 +119,7 @@ const UserTable = () => {
                       </div>
                     </td>
                     <td className="px-3 py-2 text-blue-600 font-bold whitespace-nowrap">{data.name}</td>
-                    <td className="px-3 py-2">{data.role == '1'? "Admin" : "User"}</td>
+                    <td className="px-3 py-2"><span className='bg-blue-500/20 rounded-[5px] text-blue-400 border-1 border-blue-400 px-2'>{data.role == '1'? "Admin" : "User"}</span></td>
                     <td className="px-3 py-2">{data.email}</td>
                     <td className="px-3 py-2"> {new Date(data.created_at).toLocaleDateString('en-GB')}</td>
                     <td className="px-3 flex justify-center gap-2 py-2">
